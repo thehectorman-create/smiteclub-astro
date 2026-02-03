@@ -1,0 +1,205 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Documents | Smite Club">
+  <style>
+    .hero {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+      padding: 80px 0;
+      text-align: center;
+    }
+    
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+    
+    .section {
+      padding: 60px 0;
+    }
+    
+    .section-title {
+      font-size: 32px;
+      margin-bottom: 30px;
+      color: #c41e3a;
+    }
+    
+    .doc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    
+    .doc-item {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    
+    .doc-item:hover {
+      background: #222;
+      border-color: #c41e3a;
+    }
+    
+    .doc-icon {
+      font-size: 32px;
+    }
+    
+    .doc-info h3 {
+      font-size: 18px;
+      margin-bottom: 5px;
+      color: #fff;
+    }
+    
+    .doc-info p {
+      color: #aaa;
+      font-size: 14px;
+    }
+    
+    .doc-arrow {
+      margin-left: auto;
+      color: #c41e3a;
+      font-size: 20px;
+    }
+    
+    .category {
+      margin-bottom: 40px;
+    }
+    
+    .category h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #333;
+    }
+  </style>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Club Documents</h1>
+      <p style="color: #aaa; font-size: 20px;">Official rules, player packets, and event information</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      
+      <!-- CURRENT EVENT -->
+      <div class="category">
+        <h2>🏆 Scorched Earth Open 2025</h2>
+        <div class="doc-grid">
+          <a href="/documents/seo-2025-40k-packet.pdf" class="doc-item">
+            <span class="doc-icon">📋</span>
+            <div class="doc-info">
+              <h3>40K Player Packet</h3>
+              <p>Army construction, missions, terrain</p>
+            </div>
+            <span class="doc-arrow">→</span>
+          </a>
+          
+          <a href="/documents/seo-2025-aos-packet.pdf" class="doc-item">
+            <span class="doc-icon">📋</span>
+            <div class="doc-info">
+              <h3>AoS Player Packet</h3>
+              <p>Age of Sigmar rules and format</p>
+            </div>
+            <span class="doc-arrow">→</span>
+          </a>
+          
+          <a href="/documents/terrain-layouts.pdf" class="doc-item">
+            <span class="doc-icon">🎨</span>
+            <div class="doc-info">
+              <h3>Terrain Layouts</h3>
+              <p>GW official table setups</p>
+            </div>
+            <span class="doc-arrow">→</span>
+          </a>
+          
+          <a href="/documents/mission-pack.pdf" class="doc-item">
+            <span class="doc-icon">🎯</span>
+            <div class="doc-info">
+              <h3>Mission Pack</h3>
+              <p>Pariah Nexus tournament missions</p>
+            </div>
+            <span class="doc-arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- GENERAL DOCUMENTS -->
+      <div class="category">
+        <h2>📜 General Information</h2>
+        <div class="doc-grid">
+          <a href="/documents/itc-code-of-conduct.pdf" class="doc-item">
+            <span class="doc-icon">⚖️</span>
+            <div class="doc-info">
+              <h3>ITC Code of Conduct</h3>
+              <p>Sportsmanship and behavior standards</p>
+            </div>
+            <span class="doc-arrow">→</span>
+          </a>
+          
+          <a href="/documents/itc-painting-standards.pdf" class="doc-item">
+            <span class="doc-icon">🖌️</span>
+            <div class="doc-info">
+              <h3>ITC Painting Standards</h3>
+              <p>Battle ready requirements</p>
+            </div>
+            <span class="doc-arrow">→</span>
+          </a>
+          
+          <a href="/documents/refund-policy.pdf" class="doc-item">
+            <span class="doc-icon">💰</span>
+            <div class="doc-info">
+              <h3>Refund Policy</h3>
+              <p>Ticket cancellation and transfer rules</p>
+            </div>
+            <span class="doc-arrow">→</span>
+          </a>
+          
+          <a href="/documents/venue-guide.pdf" class="doc-item">
+            <span class="doc-icon">📍</span>
+            <div class="doc-info">
+              <h3>Venue Guide</h3>
+              <p>Parking, hotels, food options</p>
+            </div>
+            <span class="doc-arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- PAST EVENTS -->
+      <div class="category">
+        <h2>📚 Past Event Documents</h2>
+        <div class="doc-grid">
+          <a href="/documents/sco-2024-40k-packet.pdf" class="doc-item">
+            <span class="doc-icon">📁</span>
+            <div class="doc-info">
+              <h3>SCO 2024 — 40K Packet</h3>
+              <p>Historical reference</p>
+            </div>
+            <span class="doc-arrow">→</span>
+          </a>
+          
+          <a href="/documents/seo-2023-40k-packet.pdf" class="doc-item">
+            <span class="doc-icon">📁</span>
+            <div class="doc-info">
+              <h3>SEO 2023 — 40K Packet</h3>
+              <p>Historical reference</p>
+            </div>
+            <span class="doc-arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</Layout>

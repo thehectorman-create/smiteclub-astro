@@ -1,0 +1,8 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[[redirects]]
+  from = "/documents/*"
+  to = "https://www.smiteclub40k.com/documents/:splat"
+  status = 302
