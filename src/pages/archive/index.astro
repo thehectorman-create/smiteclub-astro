@@ -2,95 +2,91 @@
 import Layout from '../../layouts/Layout.astro';
 ---
 
-<Layout title="Event Archive | Smite Club">
+<Layout title="Archive | Scorched Earth Open">
   <style>
     .hero {
-      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-      padding: 80px 0;
+      background: #0d0b08;
+      padding: 60px 0;
       text-align: center;
-      border-bottom: 1px solid #e2e8f0;
+      border-bottom: 3px solid #c9a45c;
     }
     
     .hero h1 {
-      font-size: 48px;
-      margin-bottom: 20px;
-      color: #1a1a1a;
+      font-size: 42px;
+      margin-bottom: 15px;
+      color: #c9a45c;
+      text-transform: uppercase;
+      letter-spacing: 2px;
     }
     
     .section {
-      padding: 60px 0;
-    }
-    
-    .section-title {
-      font-size: 32px;
-      margin-bottom: 30px;
-      color: #1e40af;
+      padding: 50px 0;
     }
     
     .year-section {
-      margin-bottom: 50px;
+      margin-bottom: 40px;
     }
     
     .year-section h2 {
-      font-size: 28px;
+      font-size: 24px;
       margin-bottom: 20px;
+      color: #c9a45c;
+      border-bottom: 2px solid #3d2e1f;
       padding-bottom: 10px;
-      border-bottom: 2px solid #e2e8f0;
-      color: #1a1a1a;
     }
     
     .event-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 25px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
     }
     
     .event-card {
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 12px;
-      padding: 30px;
+      background: #1a1209;
+      border: 2px solid #3d2e1f;
+      border-radius: 8px;
+      padding: 25px;
       text-decoration: none;
       color: inherit;
-      transition: background 0.3s, border-color 0.3s;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      transition: border-color 0.3s;
     }
     
     .event-card:hover {
-      background: #f8fafc;
-      border-color: #1e40af;
+      border-color: #c9a45c;
     }
     
     .event-card h3 {
-      font-size: 24px;
-      margin-bottom: 10px;
-      color: #1e40af;
+      font-size: 20px;
+      margin-bottom: 8px;
+      color: #c9a45c;
     }
     
     .event-card .date {
-      color: #64748b;
-      margin-bottom: 15px;
+      color: #808080;
+      font-size: 14px;
+      margin-bottom: 12px;
     }
     
     .event-card .highlights {
-      color: #475569;
-      font-size: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
     }
     
     .event-card .highlights span {
-      display: inline-block;
-      background: #f1f5f9;
+      background: #0d0b08;
       padding: 4px 10px;
       border-radius: 4px;
-      margin: 5px 5px 0 0;
-      color: #1e40af;
+      font-size: 12px;
+      color: #a0a0a0;
+      border: 1px solid #3d2e1f;
     }
   </style>
 
   <section class="hero">
     <div class="container">
       <h1>Event Archive</h1>
-      <p style="color: #64748b; font-size: 20px;">Results, winners, and memories from past tournaments</p>
+      <p style="color: #a0a0a0; font-size: 18px;">Past Scorched Earth Opens</p>
     </div>
   </section>
 
@@ -101,15 +97,13 @@ import Layout from '../../layouts/Layout.astro';
       <div class="year-section">
         <h2>2026</h2>
         <div class="event-grid">
-          <a href="/archive/seo-2026" class="event-card">
+          <div class="event-card">
             <h3>Scorched Earth Open 2026</h3>
-            <p class="date">February 28 - March 1, 2026</p>
-            <p style="color: #aaa; margin-bottom: 15px;">Upcoming — Register Now</p>
+            <p class="date">February 2026 • Upcoming</p>
             <div class="highlights">
-              <span>200+ Players Expected</span>
-              <span>40K + AoS</span>
+              <span>Registration Opening Soon</span>
             </div>
-          </a>
+          </div>
         </div>
       </div>
 
@@ -121,16 +115,10 @@ import Layout from '../../layouts/Layout.astro';
             <h3>Scorched Earth Open 2025</h3>
             <p class="date">March 8-9, 2025</p>
             <div class="highlights">
-              <span>View Winners</span>
-              <span>Photos</span>
               <span>Results</span>
+              <span>Winners</span>
+              <span>Photos</span>
             </div>
-          </a>
-          
-          <a href="/archive/sco-2025" class="event-card" style="opacity: 0.6;">
-            <h3>Smite Club Open 2025</h3>
-            <p class="date">September 2025 (TBD)</p>
-            <p style="color: #aaa; margin-bottom: 15px;">Planning in progress</p>
           </a>
         </div>
       </div>
@@ -139,21 +127,12 @@ import Layout from '../../layouts/Layout.astro';
       <div class="year-section">
         <h2>2024</h2>
         <div class="event-grid">
-          <a href="/archive/sco-2024" class="event-card">
-            <h3>Smite Club Open 2024</h3>
-            <p class="date">September 7-8, 2024</p>
-            <div class="highlights">
-              <span>40K + AoS + MCP + Shatterpoint</span>
-              <span>Arizona Athletic Grounds</span>
-            </div>
-          </a>
-          
           <a href="/archive/seo-2024" class="event-card">
             <h3>Scorched Earth Open 2024</h3>
             <p class="date">March 2024</p>
             <div class="highlights">
-              <span>View Winners</span>
               <span>Results</span>
+              <span>Gallery</span>
             </div>
           </a>
         </div>
@@ -167,23 +146,9 @@ import Layout from '../../layouts/Layout.astro';
             <h3>Scorched Earth Open 2023</h3>
             <p class="date">March 2023</p>
             <div class="highlights">
-              <span>1st: Joshua Rennie (Daemons)</span>
-              <span>2nd: Terek Haehl (World Eaters)</span>
-              <span>3rd: Chase Chappell (Ynnari)</span>
-            </div>
-          </a>
-        </div>
-      </div>
-
-      <!-- 2022 -->
-      <div class="year-section">
-        <h2>2022</h2>
-        <div class="event-grid">
-          <a href="/archive/sco-2022" class="event-card">
-            <h3>Smite Club Open 2022</h3>
-            <p class="date">September 2022</p>
-            <div class="highlights">
-              <span>Inaugural Event</span>
+              <span>1st: Joshua Rennie</span>
+              <span>2nd: Terek Haehl</span>
+              <span>3rd: Chase Chappell</span>
             </div>
           </a>
         </div>

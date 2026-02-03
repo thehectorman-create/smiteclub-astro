@@ -2,94 +2,87 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Documents | Smite Club">
+<Layout title="Documents | Scorched Earth Open 2025">
   <style>
     .hero {
-      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-      padding: 80px 0;
+      background: #0d0b08;
+      padding: 60px 0;
       text-align: center;
-      border-bottom: 1px solid #e2e8f0;
+      border-bottom: 3px solid #c9a45c;
     }
     
     .hero h1 {
-      font-size: 48px;
-      margin-bottom: 20px;
-      color: #1a1a1a;
+      font-size: 42px;
+      margin-bottom: 15px;
+      color: #c9a45c;
+      text-transform: uppercase;
+      letter-spacing: 2px;
     }
     
     .section {
-      padding: 60px 0;
+      padding: 50px 0;
     }
     
     .section-title {
-      font-size: 32px;
-      margin-bottom: 30px;
-      color: #1e40af;
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #c9a45c;
+      border-bottom: 2px solid #3d2e1f;
+      padding-bottom: 10px;
     }
     
     .doc-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 15px;
     }
     
     .doc-item {
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
+      background: #1a1209;
+      border: 2px solid #3d2e1f;
+      border-radius: 6px;
       padding: 20px;
       display: flex;
       align-items: center;
       gap: 15px;
       text-decoration: none;
       color: inherit;
-      transition: background 0.3s, border-color 0.3s;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      transition: border-color 0.3s;
     }
     
     .doc-item:hover {
-      background: #f8fafc;
-      border-color: #1e40af;
+      border-color: #c9a45c;
     }
     
     .doc-icon {
-      font-size: 32px;
+      font-size: 28px;
     }
     
     .doc-info h3 {
-      font-size: 18px;
+      font-size: 16px;
       margin-bottom: 5px;
-      color: #1a1a1a;
+      color: #f5f5f5;
     }
     
     .doc-info p {
-      color: #64748b;
-      font-size: 14px;
+      color: #808080;
+      font-size: 13px;
     }
     
     .doc-arrow {
       margin-left: auto;
-      color: #1e40af;
-      font-size: 20px;
+      color: #c9a45c;
     }
     
     .category {
       margin-bottom: 40px;
     }
-    
-    .category h2 {
-      font-size: 24px;
-      margin-bottom: 20px;
-      padding-bottom: 10px;
-      border-bottom: 2px solid #e2e8f0;
-      color: #1a1a1a;
-    }
   </style>
 
   <section class="hero">
     <div class="container">
-      <h1>Club Documents</h1>
-      <p style="color: #64748b; font-size: 20px;">Official rules, player packets, and event information</p>
+      <h1>Event Documents</h1>
+      <p style="color: #a0a0a0; font-size: 18px;">Official packets, rules, and information</p>
     </div>
   </section>
 
@@ -98,7 +91,7 @@ import Layout from '../layouts/Layout.astro';
       
       <!-- CURRENT EVENT -->
       <div class="category">
-        <h2>🏆 Scorched Earth Open 2025</h2>
+        <h2 class="section-title">Scorched Earth Open 2025</h2>
         <div class="doc-grid">
           <a href="/documents/seo-2025-40k-packet.pdf" class="doc-item">
             <span class="doc-icon">📋</span>
@@ -131,22 +124,22 @@ import Layout from '../layouts/Layout.astro';
             <span class="doc-icon">🎯</span>
             <div class="doc-info">
               <h3>Mission Pack</h3>
-              <p>Pariah Nexus tournament missions</p>
+              <p>Pariah Nexus missions</p>
             </div>
             <span class="doc-arrow">→</span>
           </a>
         </div>
       </div>
 
-      <!-- GENERAL DOCUMENTS -->
+      <!-- GENERAL -->
       <div class="category">
-        <h2>📜 General Information</h2>
+        <h2 class="section-title">Tournament Information</h2>
         <div class="doc-grid">
           <a href="/documents/itc-code-of-conduct.pdf" class="doc-item">
             <span class="doc-icon">⚖️</span>
             <div class="doc-info">
-              <h3>ITC Code of Conduct</h3>
-              <p>Sportsmanship and behavior standards</p>
+              <h3>Code of Conduct</h3>
+              <p>Sportsmanship and behavior</p>
             </div>
             <span class="doc-arrow">→</span>
           </a>
@@ -154,17 +147,8 @@ import Layout from '../layouts/Layout.astro';
           <a href="/documents/itc-painting-standards.pdf" class="doc-item">
             <span class="doc-icon">🖌️</span>
             <div class="doc-info">
-              <h3>ITC Painting Standards</h3>
+              <h3>Painting Standards</h3>
               <p>Battle ready requirements</p>
-            </div>
-            <span class="doc-arrow">→</span>
-          </a>
-          
-          <a href="/documents/refund-policy.pdf" class="doc-item">
-            <span class="doc-icon">💰</span>
-            <div class="doc-info">
-              <h3>Refund Policy</h3>
-              <p>Ticket cancellation and transfer rules</p>
             </div>
             <span class="doc-arrow">→</span>
           </a>
@@ -173,31 +157,7 @@ import Layout from '../layouts/Layout.astro';
             <span class="doc-icon">📍</span>
             <div class="doc-info">
               <h3>Venue Guide</h3>
-              <p>Parking, hotels, food options</p>
-            </div>
-            <span class="doc-arrow">→</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- PAST EVENTS -->
-      <div class="category">
-        <h2>📚 Past Event Documents</h2>
-        <div class="doc-grid">
-          <a href="/documents/sco-2024-40k-packet.pdf" class="doc-item">
-            <span class="doc-icon">📁</span>
-            <div class="doc-info">
-              <h3>SCO 2024 — 40K Packet</h3>
-              <p>Historical reference</p>
-            </div>
-            <span class="doc-arrow">→</span>
-          </a>
-          
-          <a href="/documents/seo-2023-40k-packet.pdf" class="doc-item">
-            <span class="doc-icon">📁</span>
-            <div class="doc-info">
-              <h3>SEO 2023 — 40K Packet</h3>
-              <p>Historical reference</p>
+              <p>Parking, hotels, food</p>
             </div>
             <span class="doc-arrow">→</span>
           </a>

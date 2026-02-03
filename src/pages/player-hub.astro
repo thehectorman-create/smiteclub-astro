@@ -2,60 +2,63 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Player Hub | Smite Club">
+<Layout title="Player Hub | Scorched Earth Open 2025">
   <style>
     .hero {
-      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-      padding: 80px 0;
+      background: #0d0b08;
+      padding: 60px 0;
       text-align: center;
-      border-bottom: 3px solid #7dd3fc;
+      border-bottom: 3px solid #c9a45c;
     }
     
     .hero h1 {
-      font-size: 48px;
-      margin-bottom: 20px;
-      color: #0a0a1a;
+      font-size: 42px;
+      margin-bottom: 15px;
+      color: #c9a45c;
+      text-transform: uppercase;
+      letter-spacing: 2px;
     }
     
     .hero-sub {
-      font-size: 20px;
-      color: #475569;
+      font-size: 18px;
+      color: #a0a0a0;
     }
     
     .section {
-      padding: 60px 0;
+      padding: 50px 0;
     }
     
     .section-title {
-      font-size: 32px;
-      margin-bottom: 30px;
-      color: #0a0a1a;
+      font-size: 28px;
+      margin-bottom: 25px;
+      color: #c9a45c;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
     
     .card {
-      background: #ffffff;
-      border: 2px solid #bae6fd;
-      border-radius: 12px;
-      padding: 30px;
-      margin-bottom: 30px;
-      box-shadow: 0 4px 15px rgba(125,211,252,0.15);
+      background: #1a1209;
+      border: 2px solid #3d2e1f;
+      border-radius: 8px;
+      padding: 25px;
+      margin-bottom: 20px;
     }
     
     .card h3 {
-      font-size: 24px;
-      margin-bottom: 15px;
-      color: #0a0a1a;
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #c9a45c;
     }
     
-    .card p {
-      color: #64748b;
-      margin-bottom: 20px;
+    .card p, .card li {
+      color: #a0a0a0;
+      line-height: 1.6;
     }
     
     .card-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
     }
     
     .link-list {
@@ -63,20 +66,20 @@ import Layout from '../layouts/Layout.astro';
     }
     
     .link-list li {
-      margin: 15px 0;
-      padding: 15px;
-      background: #f0f9ff;
+      margin: 10px 0;
+      padding: 12px;
+      background: #0d0b08;
       border-radius: 6px;
-      transition: background 0.3s;
-      border: 1px solid #bae6fd;
+      border: 1px solid #3d2e1f;
+      transition: border-color 0.3s;
     }
     
     .link-list li:hover {
-      background: #e0f2fe;
+      border-color: #c9a45c;
     }
     
     .link-list a {
-      color: #0a0a1a;
+      color: #f5f5f5;
       text-decoration: none;
       font-weight: 600;
       display: flex;
@@ -85,31 +88,22 @@ import Layout from '../layouts/Layout.astro';
     }
     
     .deadline {
-      background: #0a0a1a;
-      color: white;
-      padding: 20px;
-      border-radius: 8px;
-      margin: 20px 0;
-      border: 2px solid #7dd3fc;
-    }
-    
-    .deadline strong {
-      display: block;
-      font-size: 18px;
-      margin-bottom: 5px;
+      background: #c9a45c;
+      color: #0d0b08;
+      padding: 15px;
+      border-radius: 6px;
+      margin: 15px 0;
+      font-weight: 700;
     }
     
     .two-col {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 40px;
+      gap: 30px;
     }
     
     @media (max-width: 768px) {
       .two-col {
-        grid-template-columns: 1fr;
-      }
-      .card-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -118,181 +112,108 @@ import Layout from '../layouts/Layout.astro';
   <section class="hero">
     <div class="container">
       <h1>Player Hub</h1>
-      <p class="hero-sub">Everything you need to compete at Smite Club events</p>
+      <p class="hero-sub">Everything you need for Scorched Earth Open 2025</p>
     </div>
   </section>
 
-  <!-- CURRENT EVENT DEADLINES -->
-  <section class="section" style="background: #111;">
-    <div class="container">
-      <h2 class="section-title">⏰ Upcoming Deadlines — SEO 2025</h2>
-      
-      <div class="deadline">
-        <strong>List Submission Deadline</strong>
-        February 24, 2026 at 11:59 PM MST<br>
-        Submit via Best Coast Pairings
-      </div>
-      
-      <div class="deadline" style="background: #9a1830;">
-        <strong>Early Bird Pricing Ends</strong>
-        February 10, 2026<br>
-        Price increases from $75 to $90
-      </div>
-      
-      <div class="deadline" style="background: #333;">
-        <strong>Event Dates</strong>
-        February 28 - March 1, 2026<br>
-        Papago Elementary, Phoenix, AZ
-      </div>
-    </div>
-  </section>
-
-  <!-- QUICK LINKS GRID -->
   <section class="section">
     <div class="container">
-      <div class="card-grid">
-        <!-- PLAYER PACKETS -->
-        <div class="card">
+      
+      <!-- CRITICAL DATES -->
+      <div class="deadline">
+        ⚠️ <strong>List Submission Deadline:</strong> February 21, 2026 at 11:59 PM MST — Submit via Best Coast Pairings
+      </div>
+
+      <div class="two-col">
+        <!-- DOCUMENTS -->
+        <div class="card" id="documents">
           <h3>📋 Player Packets</h3>
-          <p>Official rules, missions, and army construction guidelines</p>
+          <p>Official rules and format documents</p>
           <ul class="link-list">
             <li>
               <a href="/documents/seo-2025-40k-packet.pdf">
-                SEO 2025 — 40K Player Packet
-                <span style="margin-left: auto; color: #c41e3a;">Download →</span>
+                40K Player Packet
+                <span style="margin-left: auto; color: #c9a45c;">Download →</span>
               </a>
             </li>
             <li>
               <a href="/documents/seo-2025-aos-packet.pdf">
-                SEO 2025 — AoS Player Packet
-                <span style="margin-left: auto; color: #c41e3a;">Download →</span>
+                AoS Player Packet
+                <span style="margin-left: auto; color: #c9a45c;">Download →</span>
               </a>
             </li>
             <li>
-              <a href="/documents/itc-code-of-conduct.pdf">
-                ITC Code of Conduct
-                <span style="margin-left: auto; color: #c41e3a;">Download →</span>
+              <a href="/documents/terrain-layouts.pdf">
+                Terrain Layout Guide
+                <span style="margin-left: auto; color: #c9a45c;">View →</span>
               </a>
             </li>
           </ul>
         </div>
 
         <!-- LIST SUBMISSION -->
-        <div class="card">
-          <h3>📊 List Submission</h3>
-          <p>Submit your army list via Best Coast Pairings</p>
-          <ul class="link-list">
-            <li>
-              <a href="https://www.bestcoastpairings.com" target="_blank">
-                Best Coast Pairings Website
-                <span style="margin-left: auto; color: #c41e3a;">Open →</span>
-              </a>
-            </li>
-            <li>
-              <a href="/documents/list-submission-guide.pdf">
-                How to Submit Your List
-                <span style="margin-left: auto; color: #c41e3a;">Guide →</span>
-              </a>
-            </li>
-          </ul>
-          <a href="https://www.bestcoastpairings.com" target="_blank" class="btn" style="margin-top: 20px; display: block; text-align: center;">Submit List on BCP</a>
-        </div>
-
-        <!-- SCHEDULE -->
-        <div class="card" id="schedule">
-          <h3>📅 Event Schedule</h3>
-          <p>SEO 2025 — February 28 - March 1, 2026</p>
-          <div style="background: #f8fafc; padding: 20px; border-radius: 8px; margin-top: 15px; border: 1px solid #e2e8f0;">
-            <p style="margin: 0;"><strong>Friday, Feb 28</strong></p>
-            <p style="color: #64748b; margin: 5px 0;">Registration: 5:00 PM - 8:00 PM</p>
-            
-            <p style="margin: 15px 0 0;"><strong>Saturday, Feb 29</strong></p>
-            <p style="color: #64748b; margin: 5px 0;">Round 1: 9:00 AM<br>Round 2: 11:30 AM<br>Lunch: 2:00 PM<br>Round 3: 3:00 PM</p>
-            
-            <p style="margin: 15px 0 0;"><strong>Sunday, March 1</strong></p>
-            <p style="color: #64748b; margin: 5px 0;">Round 4: 9:00 AM<br>Round 5: 11:30 AM<br>Awards: 3:00 PM</p>
+        <div class="card" id="bcp">
+          <h3>📱 List Submission (BCP)</h3>
+          <p>Submit your army list via Best Coast Pairings by Feb 21</p>
+          <div style="background: #0d0b08; padding: 15px; border-radius: 6px; margin: 15px 0; border: 1px solid #3d2e1f;">
+            <p style="margin: 0;"><strong>Step 1:</strong> Download BCP app</p>
+            <p style="margin: 10px 0;"><strong>Step 2:</strong> Search "Scorched Earth Open 2025"</p>
+            <p style="margin: 10px 0;"><strong>Step 3:</strong> Build & submit your list</p>
           </div>
+          <a href="https://www.bestcoastpairings.com" target="_blank" class="btn" style="width: 100%; text-align: center;">Open Best Coast Pairings</a>
         </div>
+      </div>
 
-        <!-- TERRAIN & MISSIONS -->
-        <div class="card" id="terrain">
-          <h3>🎨 Terrain & Missions</h3>
-          <p>GW Layouts, terrain rules, and mission format</p>
-          <ul class="link-list">
-            <li>
-              <a href="/documents/terrain-layouts.pdf">
-                Terrain Layout Guide
-                <span style="margin-left: auto; color: #1e40af;">View →</span>
-              </a>
-            </li>
-            <li>
-              <a href="/documents/mission-pack.pdf">
-                Mission Pack — Pariah Nexus
-                <span style="margin-left: auto; color: #1e40af;">Download →</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">Terrain Photos (Coming Soon)</a>
-            </li>
-          </ul>
-        </div>
-
-        <!-- PAINTING REQUIREMENTS -->
-        <div class="card" id="painting">
-          <h3>🖌️ Painting Requirements</h3>
-          <p>Battle Ready standard and ITC guidelines</p>
-          <ul style="color: #64748b; margin: 15px 0; padding-left: 20px;">
-            <li style="margin: 10px 0;">3-color minimum (base, shade, highlight)</li>
-            <li style="margin: 10px 0;">Bases painted/flocked</li>
-            <li style="margin: 10px 0;">No unpainted models on table</li>
-            <li style="margin: 10px 0;">Conversions must be approved 10 days prior</li>
-          </ul>
-          <p style="margin-top: 20px;">
-            <a href="/documents/itc-painting-standards.pdf" class="btn btn-outline" style="font-size: 14px; padding: 10px 20px;">ITC Painting Standards</a>
-          </p>
-        </div>
-
-        <!-- FAQ -->
-        <div class="card" id="faq">
-          <h3>❓ FAQ</h3>
-          <p>Common questions answered</p>
-          <div style="color: #aaa;">
-            <p style="margin: 15px 0;"><strong>Q: Can I get a refund?</strong><br>
-            A: Full refunds up to 30 days before the event. No refunds within 30 days.</p>
-            
-            <p style="margin: 15px 0;"><strong>Q: Can I transfer my ticket?</strong><br>
-            A: Yes, transfers allowed up to 30 days before. Contact info@smiteclub40k.com</p>
-            
-            <p style="margin: 15px 0;"><strong>Q: What's the terrain like?</strong><br>
-            A: GW official layouts. See Terrain & Missions section above.</p>
-            
-            <p style="margin: 15px 0;"><strong>Q: Food available?</strong><br>
-            A: Concessions on-site. Multiple restaurants within 5 minutes.</p>
+      <!-- SCHEDULE -->
+      <div class="card" id="schedule" style="margin-top: 30px;">
+        <h3>📅 Event Schedule</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+          <div>
+            <h4 style="color: #c9a45c; margin-bottom: 10px;">Friday, Feb 28</h4>
+            <p style="margin: 0;">5:00 PM — 8:00 PM<br>Registration & Check-in</p>
+          </div>
+          <div>
+            <h4 style="color: #c9a45c; margin-bottom: 10px;">Saturday, Feb 29</h4>
+            <p style="margin: 0;">9:00 AM — Round 1<br>11:30 AM — Round 2<br>2:00 PM — Lunch<br>3:00 PM — Round 3</p>
+          </div>
+          <div>
+            <h4 style="color: #c9a45c; margin-bottom: 10px;">Sunday, Mar 1</h4>
+            <p style="margin: 0;">9:00 AM — Round 4<br>11:30 AM — Round 5<br>3:00 PM — Awards</p>
           </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- JUDGES & CONTACT -->
-  <section class="section" style="background: #f8fafc; border-top: 1px solid #e2e8f0;">
-    <div class="container">
-      <h2 class="section-title">👨‍⚖️ Judges & Rules Questions</h2>
-      <div class="two-col">
-        <div class="card">
-          <h3>Rules Questions</h3>
-          <p>Email our head judge for pre-event rules clarifications:</p>
-          <p style="font-size: 20px; color: #1e40af; font-weight: 700;">info@smiteclub40k.com</p>
-          <p style="color: #64748b;">Include "Rules Question — SEO 2025" in subject line</p>
-        </div>
-        <div class="card">
-          <h3>Day-of Event Contact</h3>
-          <p>During the event, find a judge in the staff shirts or visit the TO table.</p>
-          <p style="margin-top: 20px;">
-            <a href="https://discord.gg/smiteclub" target="_blank" class="btn">Join Discord for Real-Time Updates</a>
-          </p>
+      <!-- PAINTING -->
+      <div class="card" id="painting" style="margin-top: 30px;">
+        <h3>🎨 Painting Requirements</h3>
+        <p style="margin-bottom: 15px;">ITC Battle Ready Standard — 3-color minimum</p>
+        <ul style="color: #a0a0a0; padding-left: 20px; margin: 15px 0;">
+          <li style="margin: 8px 0;">Base, shade, and highlight minimum</li>
+          <li style="margin: 8px 0;">Bases painted and flocked</li>
+          <li style="margin: 8px 0;">No unpainted models on table</li>
+          <li style="margin: 8px 0;">Conversions require TO approval 10 days prior</li>
+        </ul>
+      </div>
+
+      <!-- FAQ -->
+      <div class="card" id="faq" style="margin-top: 30px;">
+        <h3>❓ Quick FAQ</h3>
+        <div style="margin-top: 15px;">
+          <p style="margin: 12px 0;"><strong style="color: #c9a45c;">Refund policy?</strong> Full refund up to 30 days before. Transfers allowed until Feb 1.</p>
+          <p style="margin: 12px 0;"><strong style="color: #c9a45c;">Terrain?</strong> GW official layouts. See Terrain Layout Guide above.</p>
+          <p style="margin: 12px 0;"><strong style="color: #c9a45c;">Food?</strong> On-site concessions available. Restaurants within 5 minutes.</p>
+          <p style="margin: 12px 0;"><strong style="color: #c9a45c;">Parking?</strong> Free parking at venue. See venue guide for details.</p>
         </div>
       </div>
+
+      <!-- CONTACT -->
+      <div class="card" style="margin-top: 30px; background: #0d0b08; border-color: #c9a45c;">
+        <h3>📧 Questions?</h3>
+        <p>Email: <strong style="color: #c9a45c;">info@smiteclub40k.com</strong></p>
+        <p style="margin-top: 10px;">Include "SEO 2025 Question" in subject line</p>
+        <a href="https://discord.gg/smiteclub" target="_blank" class="btn" style="margin-top: 15px;">Join Discord</a>
+      </div>
+
     </div>
   </section>
 </Layout>
