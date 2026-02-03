@@ -1,0 +1,263 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SponsorStrip from '../components/SponsorStrip.astro';
+---
+
+<Layout title="Team Smite Club | Competitive Tabletop Team">
+  <style>
+    .hero {
+      background: linear-gradient(135deg, #0a0a1a 0%, #1e293b 100%);
+      padding: 100px 0;
+      text-align: center;
+      color: white;
+    }
+    
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+    
+    .hero p {
+      font-size: 20px;
+      color: #94a3b8;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .section {
+      padding: 80px 0;
+    }
+    
+    .section-title {
+      font-size: 32px;
+      margin-bottom: 30px;
+      color: #0a0a1a;
+      text-align: center;
+    }
+    
+    .what-is {
+      max-width: 800px;
+      margin: 0 auto 60px;
+      text-align: center;
+    }
+    
+    .what-is p {
+      font-size: 18px;
+      color: #475569;
+      line-height: 1.7;
+    }
+    
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    
+    .event-chip {
+      background: #f8fafc;
+      border: 2px solid #e2e8f0;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    
+    .event-chip strong {
+      display: block;
+      color: #0a0a1a;
+      margin-bottom: 5px;
+    }
+    
+    .event-chip span {
+      color: #64748b;
+      font-size: 14px;
+    }
+    
+    .results-table {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto 60px;
+      border-collapse: collapse;
+    }
+    
+    .results-table th,
+    .results-table td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    
+    .results-table th {
+      background: #f8fafc;
+      font-weight: 700;
+      color: #0a0a1a;
+    }
+    
+    .join-section {
+      background: #f0f9ff;
+      border: 2px solid #bae6fd;
+      border-radius: 12px;
+      padding: 40px;
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    .join-section h3 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      color: #0a0a1a;
+    }
+    
+    .join-section p {
+      color: #475569;
+      margin-bottom: 25px;
+    }
+    
+    .photos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+    
+    .photo-placeholder {
+      background: #f8fafc;
+      border: 2px dashed #cbd5e1;
+      border-radius: 8px;
+      aspect-ratio: 16/9;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #64748b;
+      text-align: center;
+      padding: 20px;
+    }
+    
+    .photo-placeholder.team {
+      aspect-ratio: 4/3;
+    }
+    
+    .photo-placeholder span {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    
+    .photo-placeholder small {
+      font-size: 13px;
+    }
+  </style>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Team Smite Club</h1>
+      <p>Competitive tabletop players who travel, compete, and represent the club at events nationwide.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="what-is">
+        <h2 class="section-title">What We Are</h2>
+        <p>
+          Team Smite Club is a traveling competitive team for players who want to test their skills 
+          beyond our local events. We coordinate travel, practice sessions, and team entries at 
+          major tournaments across the country.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: #f8fafc;">
+    <div class="container">
+      <h2 class="section-title">Where We Play</h2>
+      <div class="events-grid">
+        <div class="event-chip">
+          <strong>LVO</strong>
+          <span>Las Vegas Open</span>
+        </div>
+        <div class="event-chip">
+          <strong>AdeptiCon</strong>
+          <span>Chicago, IL</span>
+        </div>
+        <div class="event-chip">
+          <strong>SOUP</strong>
+          <span>Southwest Open</span>
+        </div>
+        <div class="event-chip">
+          <strong>BCP Events</strong>
+          <span>West Coast</span>
+        </div>
+        <div class="event-chip">
+          <strong>WargamesCon</strong>
+          <span>Austin, TX</span>
+        </div>
+        <div class="event-chip">
+          <strong>+ More</strong>
+          <span>Team trips as announced</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Notable Results</h2>
+      <table class="results-table">
+        <thead>
+          <tr>
+            <th>Event</th>
+            <th>Year</th>
+            <th>Result</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="3" style="text-align: center; color: #64748b; padding: 40px;">
+              Results will be added as team attends major events
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section" style="background: #f8fafc;">
+    <div class="container">
+      <h2 class="section-title">How to Join</h2>
+      <div class="join-section">
+        <h3>Interested in competing with the team?</h3>
+        <p>We're looking for dedicated players who want to travel and compete at the highest level. 
+           Prior tournament experience and commitment to practice sessions preferred.</p>
+        <a href="mailto:team@smiteclub40k.com?subject=Team Smite Club Interest" class="btn">Email team@smiteclub40k.com</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Team Photos</h2>
+      <div class="photos-grid">
+        <div class="photo-placeholder team">
+          <span>📸 Team Photo</span>
+          <small>Challengers Cup 2025 team photo</small>
+          <small style="color: #94a3b8; margin-top: 5px;">[Image: file_10---af2b7e53-115a-431f-a271-d5dbcf695632.heic]</small>
+        </div>
+        <div class="photo-placeholder">
+          <span>📸 Event Action</span>
+          <small>Tournament gameplay shot</small>
+          <small style="color: #94a3b8; margin-top: 5px;">[Placeholder: Match in progress]</small>
+        </div>
+        <div class="photo-placeholder">
+          <span>📸 Team Gathering</span>
+          <small>Post-event team dinner</small>
+          <small style="color: #94a3b8; margin-top: 5px;">[Placeholder: Group dinner photo]</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <SponsorStrip title="Team Sponsors" />
+</Layout>

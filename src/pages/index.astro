@@ -1,75 +1,75 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import EventCard from '../components/EventCard.astro';
+import SponsorStrip from '../components/SponsorStrip.astro';
+import SocialProof from '../components/SocialProof.astro';
+import eventsData from '../data/events.json';
+
+const upcomingEvents = eventsData.events.filter(e => e.status === 'upcoming');
+const seoEvent = upcomingEvents.find(e => e.id === 'scorched-earth-open-2026');
+const scoEvent = upcomingEvents.find(e => e.id === 'smite-club-open-2026');
 ---
 
-<Layout title="Smite Club | Arizona's Premier Tabletop Tournament Series">
+<Layout title="Smite Club | Arizona's Competitive Tabletop Club">
   <style>
     .hero {
-      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-      padding: 100px 0;
+      background: linear-gradient(135deg, #0a0a1a 0%, #1e293b 100%);
+      padding: 100px 0 80px;
       text-align: center;
-      border-bottom: 3px solid #7dd3fc;
+      color: white;
     }
     
     .hero h1 {
-      font-size: 52px;
+      font-size: 44px;
       margin-bottom: 20px;
-      color: #0a0a1a;
       line-height: 1.2;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
     }
     
-    .hero h1 span {
-      color: #0ea5e9;
-    }
-    
-    .hero-sub {
+    .hero .subtitle {
       font-size: 22px;
-      color: #475569;
-      margin-bottom: 20px;
-    }
-    
-    .hero-games {
-      font-size: 16px;
-      color: #64748b;
+      color: #7dd3fc;
       margin-bottom: 40px;
-      font-style: italic;
     }
     
     .hero-buttons {
       display: flex;
-      gap: 20px;
+      gap: 15px;
       justify-content: center;
       flex-wrap: wrap;
+      margin-bottom: 25px;
     }
     
-    .trust-bar {
-      background: #ffffff;
-      padding: 40px 0;
-      border-bottom: 1px solid #e0f2fe;
+    .hero .btn {
+      font-size: 16px;
+      padding: 14px 28px;
     }
     
-    .trust-items {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 30px;
-      text-align: center;
-    }
-    
-    .trust-item {
-      padding: 20px;
-    }
-    
-    .trust-item .number {
-      font-size: 48px;
-      font-weight: 900;
+    .hero .btn-primary {
+      background: #c9a45c;
       color: #0a0a1a;
     }
     
-    .trust-item .label {
-      color: #64748b;
-      font-size: 14px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+    .hero .btn-primary:hover {
+      background: #d4b76a;
+    }
+    
+    .hero .btn-outline {
+      border-color: #7dd3fc;
+      color: #7dd3fc;
+    }
+    
+    .hero .btn-outline:hover {
+      background: #7dd3fc;
+      color: #0a0a1a;
+    }
+    
+    .ticket-note {
+      font-size: 13px;
+      color: #94a3b8;
+      margin-top: 10px;
     }
     
     .section {
@@ -77,221 +77,103 @@ import Layout from '../layouts/Layout.astro';
     }
     
     .section-title {
-      font-size: 36px;
+      font-size: 32px;
       margin-bottom: 40px;
       text-align: center;
       color: #0a0a1a;
     }
     
-    .event-card {
-      background: #ffffff;
-      border: 2px solid #bae6fd;
-      border-radius: 12px;
-      padding: 40px;
-      margin-bottom: 30px;
-      box-shadow: 0 4px 15px rgba(125,211,252,0.2);
-    }
-    
-    .event-card h3 {
-      font-size: 28px;
-      margin-bottom: 10px;
-      color: #0a0a1a;
-    }
-    
-    .event-card img {
-      max-width: 100%;
-      height: auto;
-      margin-bottom: 20px;
-      max-height: 180px;
-    }
-    
-    .event-meta {
-      display: flex;
-      gap: 30px;
-      margin: 20px 0;
-      flex-wrap: wrap;
-    }
-    
-    .event-meta span {
-      color: #64748b;
-    }
-    
-    .event-description {
-      color: #475569;
-      margin: 20px 0;
-      font-size: 17px;
-    }
-    
-    .game-list {
-      color: #64748b;
-      font-size: 14px;
-      margin: 15px 0;
-      line-height: 1.6;
-    }
-    
-    .urgent {
-      background: #0a0a1a;
-      color: white;
-      padding: 4px 12px;
-      border-radius: 4px;
-      font-size: 14px;
-      font-weight: 700;
-      text-transform: uppercase;
-      border: 2px solid #7dd3fc;
-    }
-    
-    .two-col {
+    .events-showcase {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: start;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 30px;
     }
     
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 36px;
-      }
-      .two-col {
-        grid-template-columns: 1fr;
-      }
+    .charity-block {
+      background: #f0f9ff;
+      border: 2px solid #bae6fd;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      max-width: 600px;
+      margin: 60px auto 0;
+    }
+    
+    .charity-block p {
+      margin: 0;
+      color: #475569;
+      font-size: 14px;
     }
   </style>
 
   <!-- HERO -->
   <section class="hero">
     <div class="container">
-      <h1>Arizona's Premier <span>Tabletop</span><br>Tournament Series</h1>
-      <p class="hero-sub">200+ players • $5,000+ in prizes • 50% to charity</p>
-      <p class="hero-games">Warhammer 40K • Age of Sigmar • The Old World • Marvel Crisis Protocol • Star Wars • Underworlds & more</p>
+      <h1>Arizona's competitive tabletop club, hosting two flagship events each year.</h1>
+      <p class="subtitle">Scorched Earth Open and Smite Club Open. Built by players. Clean ops, great terrain, and a community that travels.</p>
       
       <div class="hero-buttons">
-        <a href="https://www.smiteclub40k.com/store/p/scorchedearthopen-2025-40k?utm_source=events&utm_medium=hero&utm_campaign=seo2025" class="btn">Get Tickets</a>
-        <a href="/player-hub" class="btn btn-outline">Player Resources</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- TRUST BAR -->
-  <section class="trust-bar">
-    <div class="container">
-      <div class="trust-items">
-        <div class="trust-item">
-          <div class="number">200+</div>
-          <div class="label">Players Per Event</div>
-        </div>
-        <div class="trust-item">
-          <div class="number">5th</div>
-          <div class="label">Year Running</div>
-        </div>
-        <div class="trust-item">
-          <div class="number">$5K+</div>
-          <div class="label">Prize Pool</div>
-        </div>
-        <div class="trust-item">
-          <div class="number">50%</div>
-          <div class="label">To Charity</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- UPCOMING EVENTS -->
-  <section class="section">
-    <div class="container">
-      <h2 class="section-title">Upcoming Events</h2>
-      
-      <!-- SCORCHED EARTH OPEN 2025 -->
-      <div class="event-card">
-        <span class="urgent">🏆 Next Event</span>
-        <img src="/images/seo-logo-full.png" alt="Scorched Earth Open 2025" />
-        <h3>Scorched Earth Open 2025</h3>
-        <div class="event-meta">
-          <span>📅 February 28 — March 1, 2026</span>
-          <span>📍 Phoenix, Arizona</span>
-          <span>💰 $95</span>
-        </div>
-        <p class="game-list">
-          <strong>Games:</strong> Warhammer 40K • Age of Sigmar • The Old World • Marvel Crisis Protocol • Star Wars: Legion • Star Wars: Shatterpoint • Warhammer Underworlds • Age of Sigmar: Spearhead
-        </p>
-        <p class="event-description">
-          Arizona's largest tabletop gaming tournament. Multiple game systems, competitive play, 
-          with $5,000+ in prizes. 50% of proceeds benefit local schools.
-        </p>
-        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-          <a href="https://www.smiteclub40k.com/store/p/scorchedearthopen-2025-40k?utm_source=events&utm_medium=card&utm_campaign=seo2025" class="btn">Register Now</a>
-          <a href="/player-hub" class="btn btn-outline">Event Info</a>
-        </div>
+        <a href="/events/scorched-earth-open-2026" class="btn btn-primary">Get Tickets</a>
+        <a href="https://discord.gg/smiteclub" target="_blank" class="btn btn-outline">Join Discord</a>
+        <a href="/player-hub" class="btn btn-outline">View Event Packets</a>
       </div>
       
-      <!-- SMITE CLUB OPEN 2026 -->
-      <div class="event-card" style="opacity: 0.9;">
-        <span style="background: #0ea5e9; color: white; padding: 4px 12px; border-radius: 4px; font-size: 14px; font-weight: 700; text-transform: uppercase;">Flagship Event</span>
-        <h3 style="margin-top: 15px;">Smite Club Open 2026</h3>
-        <div class="event-meta">
-          <span>📅 August 22-23, 2026</span>
-          <span>📍 Phoenix, Arizona</span>
-          <span>💰 TBA</span>
-        </div>
-        <p class="game-list">
-          <strong>Games:</strong> Warhammer 40K • Age of Sigmar • Marvel Crisis Protocol • Warhammer: The Old World • & more
-        </p>
-        <p class="event-description">
-          Our annual flagship multi-game tournament returns. The biggest Smite Club event of the year.
-        </p>
-        <a href="#" class="btn btn-outline" style="opacity: 0.7; cursor: not-allowed;">Registration Opening Soon</a>
-      </div>
+      <p class="ticket-note">Tickets are sold through our official storefront.</p>
     </div>
   </section>
 
-  <!-- PLAYER HUB CTA -->
-  <section class="section" style="background: #f0f9ff; border-top: 2px solid #bae6fd;">
-    <div class="container">
-      <div class="two-col">
-        <div>
-          <h2 class="section-title" style="text-align: left;">Ready to Play?</h2>
-          <p style="font-size: 18px; color: #475569; margin-bottom: 30px;">
-            Find player packets, schedules, terrain rules, list submission info, and answers to all your questions.
-          </p>
-          <a href="/player-hub" class="btn" style="font-size: 18px; padding: 16px 32px;">Enter the Player Hub</a>
-        </div>
-        <div style="background: #ffffff; padding: 40px; border-radius: 12px; border: 2px solid #7dd3fc; box-shadow: 0 4px 15px rgba(125,211,252,0.25);">
-          <h3 style="color: #0a0a1a; margin-bottom: 20px;">Quick Links</h3>
-          <ul style="list-style: none; font-size: 16px; color: #475569;">
-            <li style="margin: 15px 0;">📋 <a href="/documents" style="color: #0ea5e9; text-decoration: none; font-weight: 600;">Player Packets</a></li>
-            <li style="margin: 15px 0;">📅 <a href="/player-hub#schedule" style="color: #0ea5e9; text-decoration: none; font-weight: 600;">Event Schedule</a></li>
-            <li style="margin: 15px 0;">🎨 <a href="/player-hub#painting" style="color: #0ea5e9; text-decoration: none; font-weight: 600;">Painting Requirements</a></li>
-            <li style="margin: 15px 0;">📊 <a href="/player-hub#terrain" style="color: #0ea5e9; text-decoration: none; font-weight: 600;">Terrain & Missions</a></li>
-            <li style="margin: 15px 0;">❓ <a href="/player-hub#faq" style="color: #0ea5e9; text-decoration: none; font-weight: 600;">FAQ</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PAST EVENTS -->
+  <!-- EVENTS -->
   <section class="section">
     <div class="container">
-      <h2 class="section-title">Past Events</h2>
-      <p style="text-align: center; color: #64748b; margin-bottom: 40px; font-size: 18px;">
-        Results, photos, and memories from previous tournaments
-      </p>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-        <a href="/archive/seo-2025" class="event-card" style="text-decoration: none; color: inherit;">
-          <h3>SEO 2025</h3>
-          <p style="color: #64748b;">March 8-9, 2025 • Results & Winners</p>
-        </a>
-        <a href="/archive/sco-2024" class="event-card" style="text-decoration: none; color: inherit;">
-          <h3>SCO 2024</h3>
-          <p style="color: #64748b;">September 7-8, 2024 • Results & Winners</p>
-        </a>
-        <a href="/archive/seo-2024" class="event-card" style="text-decoration: none; color: inherit;">
-          <h3>SEO 2024</h3>
-          <p style="color: #64748b;">March 2024 • Results & Gallery</p>
-        </a>
+      <h2 class="section-title">Our Flagship Events</h2>
+      <div class="events-showcase">
+        {seoEvent && (
+          <EventCard 
+            id={seoEvent.id}
+            short_name="Scorched Earth Open"
+            full_name={seoEvent.full_name}
+            date_display={seoEvent.date_display}
+            city={seoEvent.city}
+            state={seoEvent.state}
+            ticket_price={seoEvent.ticket_price}
+            ticket_url={seoEvent.ticket_url}
+            is_flagship={false}
+            games={seoEvent.games}
+          />
+        )}
+        {scoEvent && (
+          <EventCard 
+            id={scoEvent.id}
+            short_name="Smite Club Open"
+            full_name={scoEvent.full_name}
+            date_display={scoEvent.date_display}
+            city={scoEvent.city}
+            state={scoEvent.state}
+            ticket_price={scoEvent.ticket_price}
+            is_flagship={true}
+            games={scoEvent.games}
+          />
+        )}
       </div>
-      <div style="text-align: center; margin-top: 40px;">
-        <a href="/archive" class="btn btn-outline">View Full Archive</a>
+      
+      <div class="charity-block">
+        <p>❤️ 50% of proceeds from all events benefit local schools and community programs</p>
       </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL PROOF -->
+  <SocialProof />
+
+  <!-- SPONSORS -->
+  <SponsorStrip title="Our Sponsors" />
+
+  <!-- CTA -->
+  <section class="section" style="background: linear-gradient(135deg, #0a0a1a 0%, #1e293b 100%); color: white; text-align: center;">
+    <div class="container">
+      <h2 style="font-size: 32px; margin-bottom: 20px;">Ready to compete?</h2>
+      <p style="font-size: 18px; color: #94a3b8; margin-bottom: 30px;">Join 200+ players for competitive tabletop gaming with a community that travels.</p>
+      <a href="/events/scorched-earth-open-2026" class="btn btn-primary" style="font-size: 18px; padding: 16px 40px;">Get Tickets for Scorched Earth Open 2026</a>
     </div>
   </section>
 </Layout>

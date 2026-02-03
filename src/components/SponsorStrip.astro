@@ -1,0 +1,68 @@
+---
+export interface Props {
+  title?: string;
+  sponsors?: string[];
+}
+
+const { title = "Our Sponsors", sponsors = ["placeholder-1", "placeholder-2", "placeholder-3", "placeholder-4"] } = Astro.props;
+---
+
+<div class="sponsor-strip">
+  <p class="sponsor-title">{title}</p>
+  <div class="sponsor-logos">
+    {sponsors.map((sponsor, index) => (
+      <div class="sponsor-placeholder">
+        <span>[Sponsor {index + 1}]</span>
+        <small>Logo placeholder</small>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .sponsor-strip {
+    background: #f8fafc;
+    border-top: 2px solid #e2e8f0;
+    border-bottom: 2px solid #e2e8f0;
+    padding: 40px 0;
+    text-align: center;
+  }
+  
+  .sponsor-title {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #64748b;
+    margin-bottom: 25px;
+  }
+  
+  .sponsor-logos {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  
+  .sponsor-placeholder {
+    width: 150px;
+    height: 80px;
+    background: #ffffff;
+    border: 2px dashed #cbd5e1;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #94a3b8;
+  }
+  
+  .sponsor-placeholder span {
+    font-size: 14px;
+    font-weight: 600;
+  }
+  
+  .sponsor-placeholder small {
+    font-size: 11px;
+  }
+</style>

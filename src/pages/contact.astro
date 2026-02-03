@@ -1,0 +1,142 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Contact | Smite Club">
+  <style>
+    .hero {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      padding: 80px 0;
+      text-align: center;
+      border-bottom: 3px solid #7dd3fc;
+    }
+    
+    .hero h1 {
+      font-size: 42px;
+      margin-bottom: 15px;
+      color: #0a0a1a;
+    }
+    
+    .section {
+      padding: 60px 0;
+    }
+    
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-bottom: 50px;
+    }
+    
+    .contact-card {
+      background: #ffffff;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 30px;
+      text-align: center;
+    }
+    
+    .contact-card h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #0a0a1a;
+    }
+    
+    .contact-card p {
+      color: #64748b;
+      margin-bottom: 20px;
+      font-size: 15px;
+    }
+    
+    .contact-card a {
+      color: #0ea5e9;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 16px;
+    }
+    
+    .contact-card a:hover {
+      text-decoration: underline;
+    }
+    
+    .response-time {
+      display: inline-block;
+      background: #f0f9ff;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      color: #475569;
+      margin-top: 15px;
+    }
+    
+    .discord-banner {
+      background: #5865F2;
+      color: white;
+      padding: 40px;
+      border-radius: 12px;
+      text-align: center;
+    }
+    
+    .discord-banner h2 {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+    
+    .discord-banner p {
+      margin-bottom: 25px;
+      opacity: 0.9;
+    }
+    
+    .discord-banner a {
+      display: inline-block;
+      background: white;
+      color: #5865F2;
+      padding: 12px 24px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 700;
+    }
+  </style>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Contact Us</h1>
+      <p style="color: #64748b; font-size: 18px;">Questions? We're here to help.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3>📧 General Questions</h3>
+          <p>For event info, registration help, or general inquiries</p>
+          <a href="mailto:info@smiteclub40k.com">info@smiteclub40k.com</a>
+          <span class="response-time">Typically responds in 24-48 hours</span>
+        </div>
+        
+        <div class="contact-card">
+          <h3>🏆 Team Smite Club</h3>
+          <p>For team inquiries, tryouts, or travel coordination</p>
+          <a href="mailto:team@smiteclub40k.com">team@smiteclub40k.com</a>
+          <span class="response-time">Typically responds in 2-3 days</span>
+        </div>
+        
+        <div class="contact-card">
+          <h3>🤝 Sponsorship</h3>
+          <p>For partnership and sponsor opportunities</p>
+          <a href="mailto:sponsors@smiteclub40k.com">sponsors@smiteclub40k.com</a>
+          <span class="response-time">Typically responds in 2-3 days</span>
+        </div>
+      </div>
+
+      <div class="discord-banner">
+        <h2>💬 Join Our Discord</h2>
+        <p>The fastest way to get answers, connect with players, and stay updated on events. Our community is active daily.</p>
+        <a href="https://discord.gg/smiteclub" target="_blank">Join Discord Server</a>
+      </div>
+
+    </div>
+  </section>
+</Layout>

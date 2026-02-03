@@ -14,7 +14,7 @@ const { title } = Astro.props;
   <title>{title}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -37,9 +37,12 @@ const { title } = Astro.props;
     
     header {
       background: #ffffff;
-      padding: 20px 0;
+      padding: 15px 0;
       border-bottom: 3px solid #7dd3fc;
       box-shadow: 0 2px 8px rgba(125,211,252,0.3);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
     
     nav {
@@ -48,29 +51,59 @@ const { title } = Astro.props;
       align-items: center;
     }
     
-    .logo {
-      font-size: 24px;
-      font-weight: 900;
-      color: #0a0a1a;
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 2px;
+    .logo img {
+      height: 45px;
+      width: auto;
+      display: block;
     }
     
     .nav-links {
       display: flex;
       gap: 30px;
+      align-items: center;
     }
     
     .nav-links a {
       color: #0a0a1a;
       text-decoration: none;
       font-weight: 600;
+      font-size: 15px;
       transition: color 0.3s;
     }
     
     .nav-links a:hover {
       color: #0ea5e9;
+    }
+    
+    .dropdown {
+      position: relative;
+    }
+    
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background: #ffffff;
+      min-width: 220px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      border: 2px solid #7dd3fc;
+      border-radius: 8px;
+      padding: 10px 0;
+      top: 100%;
+      margin-top: 10px;
+    }
+    
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    
+    .dropdown-content a {
+      display: block;
+      padding: 10px 20px;
+      color: #0a0a1a;
+    }
+    
+    .dropdown-content a:hover {
+      background: #f0f9ff;
     }
     
     .btn {
@@ -84,6 +117,7 @@ const { title } = Astro.props;
       transition: all 0.3s;
       border: none;
       cursor: pointer;
+      font-size: 15px;
     }
     
     .btn:hover {
@@ -104,7 +138,7 @@ const { title } = Astro.props;
     
     footer {
       background: #f8fafc;
-      padding: 40px 0;
+      padding: 50px 0;
       margin-top: 80px;
       border-top: 3px solid #7dd3fc;
     }
@@ -113,6 +147,26 @@ const { title } = Astro.props;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 40px;
+    }
+    
+    .footer-section h3 {
+      font-size: 16px;
+      color: #0a0a1a;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .footer-section a {
+      display: block;
+      color: #64748b;
+      text-decoration: none;
+      margin: 8px 0;
+      font-size: 14px;
+    }
+    
+    .footer-section a:hover {
+      color: #0ea5e9;
     }
     
     h1, h2, h3 {
@@ -129,12 +183,22 @@ const { title } = Astro.props;
   <header>
     <div class="container">
       <nav>
-        <a href="/" class="logo"><img src="/images/smite-club-logo.png" alt="Smite Club" style="height: 40px; width: auto;" /></a>
+        <a href="/" class="logo">
+          <img src="/images/smite-club-logo.png" alt="Smite Club" />
+        </a>
         <div class="nav-links">
-          <a href="/">Home</a>
+          <div class="dropdown">
+            <a href="/events">Events ▼</a>
+            <div class="dropdown-content">
+              <a href="/events/scorched-earth-open-2026">Scorched Earth Open</a>
+              <a href="/events/smite-club-open-2026">Smite Club Open</a>
+            </div>
+          </div>
+          <a href="/team">Team Smite Club</a>
           <a href="/player-hub">Player Hub</a>
-          <a href="/documents">Documents</a>
           <a href="/archive">Archive</a>
+          <a href="/sponsors">Sponsors</a>
+          <a href="/contact">Contact</a>
         </div>
       </nav>
     </div>
@@ -147,17 +211,29 @@ const { title } = Astro.props;
   <footer>
     <div class="container">
       <div class="footer-content">
-        <div>
-          <h3>SMITE CLUB</h3>
-          <p>Arizona's premier Warhammer tournament series</p>
+        <div class="footer-section">
+          <h3>Events</h3>
+          <a href="/events/scorched-earth-open-2026">Scorched Earth Open 2026</a>
+          <a href="/events/smite-club-open-2026">Smite Club Open 2026</a>
+          <a href="/archive">Past Events</a>
         </div>
-        <div>
-          <h3>Contact</h3>
-          <p>info@smiteclub40k.com</p>
+        <div class="footer-section">
+          <h3>Resources</h3>
+          <a href="/player-hub">Player Hub</a>
+          <a href="/player-hub#documents">Event Packets</a>
+          <a href="/player-hub#faq">FAQ</a>
         </div>
-        <div>
-          <h3>Social</h3>
-          <p>Discord • Instagram • Facebook</p>
+        <div class="footer-section">
+          <h3>Connect</h3>
+          <a href="https://discord.gg/smiteclub" target="_blank">Discord</a>
+          <a href="/contact">Contact Us</a>
+          <a href="/sponsors">Become a Sponsor</a>
+        </div>
+        <div class="footer-section">
+          <h3>Smite Club</h3>
+          <p style="color: #64748b; font-size: 14px; line-height: 1.6;">
+            Arizona's competitive tabletop club. Built by players, for players.
+          </p>
         </div>
       </div>
     </div>

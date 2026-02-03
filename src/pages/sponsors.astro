@@ -1,0 +1,199 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Sponsors | Smite Club">
+  <style>
+    .hero {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      padding: 80px 0;
+      text-align: center;
+      border-bottom: 3px solid #7dd3fc;
+    }
+    
+    .hero h1 {
+      font-size: 42px;
+      margin-bottom: 15px;
+      color: #0a0a1a;
+    }
+    
+    .section {
+      padding: 60px 0;
+    }
+    
+    .section-title {
+      font-size: 28px;
+      margin-bottom: 30px;
+      color: #0a0a1a;
+      text-align: center;
+    }
+    
+    .sponsor-tier {
+      margin-bottom: 60px;
+    }
+    
+    .tier-title {
+      font-size: 20px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #64748b;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .sponsor-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      justify-items: center;
+    }
+    
+    .sponsor-placeholder {
+      width: 100%;
+      max-width: 250px;
+      aspect-ratio: 3/2;
+      background: #f8fafc;
+      border: 2px dashed #cbd5e1;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #64748b;
+      text-align: center;
+      padding: 20px;
+    }
+    
+    .sponsor-placeholder.large {
+      max-width: 350px;
+    }
+    
+    .sponsor-placeholder span {
+      font-size: 16px;
+      font-weight: 600;
+    }
+    
+    .sponsor-placeholder small {
+      font-size: 12px;
+      margin-top: 8px;
+    }
+    
+    .become-sponsor {
+      background: #0a0a1a;
+      color: white;
+      padding: 60px 40px;
+      border-radius: 12px;
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .become-sponsor h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+    
+    .become-sponsor p {
+      color: #94a3b8;
+      margin-bottom: 30px;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    
+    .benefits-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin: 30px 0;
+      text-align: left;
+    }
+    
+    .benefits-list li {
+      color: #7dd3fc;
+      font-size: 15px;
+    }
+  </style>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Our Sponsors</h1>
+      <p style="color: #64748b; font-size: 18px;">Thanks to the partners who make our events possible</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      
+      <!-- PLATINUM TIER -->
+      <div class="sponsor-tier">
+        <h2 class="tier-title">Platinum Partners</h2>
+        <div class="sponsor-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+          <div class="sponsor-placeholder large">
+            <span>[Your Logo Here]</span>
+            <small>Platinum sponsor placement</small>
+          </div>
+          <div class="sponsor-placeholder large">
+            <span>[Your Logo Here]</span>
+            <small>Platinum sponsor placement</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- GOLD TIER -->
+      <div class="sponsor-tier">
+        <h2 class="tier-title">Gold Sponsors</h2>
+        <div class="sponsor-grid">
+          <div class="sponsor-placeholder">
+            <span>[Gold Sponsor]</span>
+            <small>Logo placeholder</small>
+          </div>
+          <div class="sponsor-placeholder">
+            <span>[Gold Sponsor]</span>
+            <small>Logo placeholder</small>
+          </div>
+          <div class="sponsor-placeholder">
+            <span>[Gold Sponsor]</span>
+            <small>Logo placeholder</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- SILVER TIER -->
+      <div class="sponsor-tier">
+        <h2 class="tier-title">Silver Sponsors</h2>
+        <div class="sponsor-grid" style="grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));">
+          <div class="sponsor-placeholder" style="max-width: 180px; aspect-ratio: 1/1;">
+            <span style="font-size: 14px;">[Silver]</span>
+          </div>
+          <div class="sponsor-placeholder" style="max-width: 180px; aspect-ratio: 1/1;">
+            <span style="font-size: 14px;">[Silver]</span>
+          </div>
+          <div class="sponsor-placeholder" style="max-width: 180px; aspect-ratio: 1/1;">
+            <span style="font-size: 14px;">[Silver]</span>
+          </div>
+          <div class="sponsor-placeholder" style="max-width: 180px; aspect-ratio: 1/1;">
+            <span style="font-size: 14px;">[Silver]</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section" style="background: #f8fafc;">
+    <div class="container">
+      <div class="become-sponsor">
+        <h2>Become a Sponsor</h2>
+        <p>Join the companies supporting competitive tabletop gaming in Arizona. Our sponsors get visibility across all events, digital properties, and direct access to 200+ engaged players.</p>
+        <ul class="benefits-list">
+          <li>Logo on all event materials</li>
+          <li>Website & social media features</li>
+          <li>On-site activation space</li>
+          <li>Direct player engagement</li>
+          <li>Discord community access</li>
+        </ul>
+        <a href="mailto:sponsors@smiteclub40k.com" class="btn" style="background: #c9a45c; color: #0a0a1a; font-size: 16px; padding: 14px 32px;">Contact sponsors@smiteclub40k.com</a>
+      </div>
+    </div>
+  </section>
+</Layout>

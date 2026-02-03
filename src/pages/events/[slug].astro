@@ -1,0 +1,454 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SponsorStrip from '../../components/SponsorStrip.astro';
+import eventsData from '../../data/events.json';
+
+export function getStaticPaths() {
+  const upcoming = eventsData.events.map(event => ({
+    params: { slug: event.id },
+    props: { event }
+  }));
+  
+  const past = eventsData.past_events.map(event => ({
+    params: { slug: event.id },
+    props: { event: { ...event, status: 'past' } }
+  }));
+  
+  return [...upcoming, ...past];
+}
+
+const { event } = Astro.props;
+---
+
+<Layout title={`${event.full_name} | Smite Club`}>
+  <style>
+    .hero {
+      background: linear-gradient(135deg, #0a0a1a 0%, #1e293b 100%);
+      padding: 80px 0 60px;
+      text-align: center;
+      color: white;
+    }
+    
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 15px;
+    }
+    
+    .hero .subtitle {
+      font-size: 24px;
+      color: #7dd3fc;
+      margin-bottom: 10px;
+    }
+    
+    .hero .meta {
+      font-size: 18px;
+      color: #94a3b8;
+      margin-bottom: 30px;
+    }
+    
+    .hero-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .hero .btn {
+      font-size: 16px;
+      padding: 14px 28px;
+    }
+    
+    .hero .btn-primary {
+      background: #c9a45c;
+      color: #0a0a1a;
+    }
+    
+    .hero .btn-outline {
+      border-color: #7dd3fc;
+      color: #7dd3fc;
+    }
+    
+    .section {
+      padding: 60px 0;
+    }
+    
+    .section-title {
+      font-size: 28px;
+      margin-bottom: 30px;
+      color: #0a0a1a;
+    }
+    
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+    }
+    
+    .quick-facts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    
+    .fact {
+      background: #f8fafc;
+      padding: 20px;
+      border-radius: 8px;
+      border: 2px solid #e2e8f0;
+    }
+    
+    .fact-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #64748b;
+      margin-bottom: 8px;
+    }
+    
+    .fact-value {
+      font-size: 20px;
+      font-weight: 700;
+      color: #0a0a1a;
+    }
+    
+    .card {
+      background: #ffffff;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 30px;
+    }
+    
+    .card h3 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      color: #0a0a1a;
+    }
+    
+    .card ul {
+      color: #475569;
+      padding-left: 20px;
+    }
+    
+    .card li {
+      margin: 10px 0;
+    }
+    
+    .schedule-day {
+      margin-bottom: 30px;
+    }
+    
+    .schedule-day h4 {
+      font-size: 18px;
+      color: #0a0a1a;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #e2e8f0;
+    }
+    
+    .schedule-item {
+      display: flex;
+      gap: 20px;
+      padding: 12px 0;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    
+    .schedule-item:last-child {
+      border-bottom: none;
+    }
+    
+    .schedule-time {
+      font-weight: 700;
+      color: #0a0a1a;
+      min-width: 100px;
+    }
+    
+    .venue-map-placeholder {
+      background: #f8fafc;
+      border: 2px dashed #cbd5e1;
+      border-radius: 8px;
+      height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #64748b;
+      text-align: center;
+      padding: 20px;
+    }
+    
+    .downloads-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    .downloads-table th,
+    .downloads-table td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    
+    .downloads-table th {
+      background: #f8fafc;
+      font-weight: 700;
+      color: #0a0a1a;
+    }
+    
+    .faq-item {
+      margin-bottom: 25px;
+      padding-bottom: 25px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    
+    .faq-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    
+    .faq-question {
+      font-weight: 700;
+      color: #0a0a1a;
+      margin-bottom: 8px;
+    }
+    
+    .faq-answer {
+      color: #475569;
+    }
+    
+    .charity-block {
+      background: #f0f9ff;
+      border: 2px solid #bae6fd;
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 40px;
+      text-align: center;
+    }
+    
+    .charity-block p {
+      margin: 0;
+      color: #475569;
+      font-size: 14px;
+    }
+    
+    .sticky-cta {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #ffffff;
+      border-top: 3px solid #7dd3fc;
+      padding: 15px 0;
+      box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
+      z-index: 50;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+    
+    @media (max-width: 768px) {
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+      .hero h1 {
+        font-size: 36px;
+      }
+    }
+  </style>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <p class="subtitle">{event.is_flagship ? 'Flagship Event' : 'Upcoming Event'}</p>
+      <h1>{event.full_name}</h1>
+      <p class="meta">📅 {event.date_display} • 📍 {event.venue}, {event.city}, {event.state}</p>
+      
+      <div class="hero-buttons">
+        {event.ticket_url ? (
+          <a href={event.ticket_url} class="btn btn-primary">Get Tickets — {event.ticket_price}</a>
+        ) : (
+          <span class="btn btn-outline" style="cursor: not-allowed;">Tickets Available Soon</span>
+        )}
+        {event.packet_url && (
+          <a href={event.packet_url} class="btn btn-outline">View Event Packets</a>
+        )}
+        <a href="/player-hub" class="btn btn-outline">Player Hub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICK FACTS -->
+  <section class="section">
+    <div class="container">
+      <div class="quick-facts">
+        <div class="fact">
+          <div class="fact-label">Format</div>
+          <div class="fact-value">{event.format?.rounds || '5'} Rounds</div>
+        </div>
+        <div class="fact">
+          <div class="fact-label">Points</div>
+          <div class="fact-value">{event.format?.points_cap || '2,000'}</div>
+        </div>
+        <div class="fact">
+          <div class="fact-label">Terrain</div>
+          <div class="fact-value">{event.format?.terrain || 'GW Layouts'}</div>
+        </div>
+        <div class="fact">
+          <div class="fact-label">Games</div>
+          <div class="fact-value">{event.games?.length || '8'} Systems</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT YOU GET -->
+  <section class="section" style="background: #f8fafc;">
+    <div class="container">
+      <h2 class="section-title">What You Get</h2>
+      <div class="two-col">
+        <div class="card">
+          <h3>🎨 Premium Terrain</h3>
+          <ul>
+            <li>GW official table layouts</li>
+            <li>Painted and flocked terrain</li>
+            <li>Consistent, tournament-ready boards</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🏆 Competitive Prizing</h3>
+          <ul>
+            <li>{event.prizing || '$5,000+ prize pool'}</li>
+            <li>Custom awards and trophies</li>
+            <li>Top finishers recognized</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>⚖️ Expert Judges</h3>
+          <ul>
+            <li>ITC-certified judge team</li>
+            <li>Consistent, fair rulings</li>
+            <li>Pre-event rules clarifications</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🤝 Player Community</h3>
+          <ul>
+            <li>Players travel from across the Southwest</li>
+            <li>Active Discord community</li>
+            <li>Post-event hangouts</li>
+          </ul>
+        </div>
+      </div>
+      
+      {event.charity && (
+        <div class="charity-block">
+          <p>❤️ {event.charity}</p>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- SCHEDULE -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Event Schedule</h2>
+      <div class="two-col">
+        {event.schedule?.map(day => (
+          <div class="card">
+            <div class="schedule-day">
+              <h4>{day.day}</h4>
+              {day.items.map(item => (
+                <div class="schedule-item">
+                  <span class="schedule-time">{item.time}</span>
+                  <span style="color: #475569;">{item.activity}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- VENUE -->
+  <section class="section" style="background: #f8fafc;">
+    <div class="container">
+      <h2 class="section-title">Venue & Hotels</h2>
+      <div class="two-col">
+        <div>
+          <h3 style="font-size: 22px; margin-bottom: 15px;">{event.venue}</h3>
+          <p style="color: #475569; margin-bottom: 20px;">{event.venue_address}</p>
+          <p style="color: #64748b; font-size: 14px; line-height: 1.6;">
+            Free parking available on-site. Multiple hotel options within 10 minutes.
+            See the Player Packet for recommended hotels and group rates.
+          </p>
+        </div>
+        <div class="venue-map-placeholder">
+          <span style="font-size: 18px; font-weight: 600;">📍 Map Embed</span>
+          <span style="font-size: 14px; margin-top: 10px;">Google Maps integration here</span>
+          <span style="font-size: 12px; color: #94a3b8; margin-top: 5px;">Shows venue location with nearby hotels</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOADS -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Downloads & Resources</h2>
+      <div class="card">
+        <table class="downloads-table">
+          <thead>
+            <tr>
+              <th>Document</th>
+              <th>Description</th>
+              <th>Link</th>
+            </tr>
+          </thead>
+          <tbody>
+            {event.downloads?.map(download => (
+              <tr>
+                <td>{download.name}</td>
+                <td style="color: #64748b;">{download.description || 'Official event document'}</td>
+                <td><a href={download.url} class="btn" style="padding: 8px 16px; font-size: 13px;">Download</a></td>
+              </tr>
+            ))}
+            {!event.downloads?.length && (
+              <tr>
+                <td colspan="3" style="text-align: center; color: #64748b;">Documents will be available soon</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" style="background: #f8fafc;">
+    <div class="container">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="card">
+        {event.faqs?.map(faq => (
+          <div class="faq-item">
+            <p class="faq-question">{faq.q}</p>
+            <p class="faq-answer">{faq.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SPONSORS -->
+  <SponsorStrip title="Event Sponsors" />
+
+  <!-- STICKY CTA -->
+  {event.ticket_url && (
+    <div class="sticky-cta">
+      <a href={event.ticket_url} class="btn btn-primary">Get Tickets — {event.ticket_price}</a>
+      <a href={`#`} class="btn btn-outline" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">Back to Top</a>
+    </div>
+  )}
+</Layout>

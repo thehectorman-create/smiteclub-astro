@@ -1,0 +1,96 @@
+---
+const stats = [
+  { number: "5", label: "Years running" },
+  { number: "200+", label: "Players per event" },
+  { number: "8", label: "Game systems" },
+  { number: "50%", label: "To local schools" }
+];
+
+const testimonials = [
+  { quote: "Best terrain I've played on in the Southwest. Clean event, great judges.", author: "Tournament Player" },
+  { quote: "The community here travels. Made friends I still play with across the country.", author: "Regular Attendee" },
+  { quote: "Run by players who actually understand what competitive players need.", author: "Top 8 Finisher" }
+];
+---
+
+<div class="social-proof">
+  <div class="stats-row">
+    {stats.map(stat => (
+      <div class="stat">
+        <span class="stat-number">{stat.number}</span>
+        <span class="stat-label">{stat.label}</span>
+      </div>
+    ))}
+  </div>
+  
+  <div class="testimonials">
+    {testimonials.map((t, i) => (
+      <div class="testimonial">
+        <p class="quote">"{t.quote}"</p>
+        <p class="author">— {t.author}</p>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .social-proof {
+    padding: 60px 0;
+  }
+  
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+    text-align: center;
+  }
+  
+  .stat {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .stat-number {
+    font-size: 48px;
+    font-weight: 900;
+    color: #0a0a1a;
+    line-height: 1;
+  }
+  
+  .stat-label {
+    font-size: 14px;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 8px;
+  }
+  
+  .testimonials {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+  }
+  
+  .testimonial {
+    background: #f8fafc;
+    padding: 25px;
+    border-radius: 8px;
+    border-left: 4px solid #7dd3fc;
+  }
+  
+  .quote {
+    font-size: 16px;
+    color: #475569;
+    font-style: italic;
+    margin: 0 0 15px 0;
+    line-height: 1.5;
+  }
+  
+  .author {
+    font-size: 14px;
+    color: #64748b;
+    margin: 0;
+    font-weight: 600;
+  }
+</style>
