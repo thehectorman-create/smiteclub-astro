@@ -24,8 +24,7 @@
         "url": "https://www.smiteclub40k.com/store/p/scorchedearthopen-2026"
       },
       "secondary_ctas": [
-        { "label": "Player Hub", "url": "/player-hub" },
-        { "label": "Join Discord", "url": "https://discord.gg/smiteclub" }
+        { "label": "Player Hub", "url": "/player-hub" }
       ],
       "games": [
         "Warhammer 40K",
@@ -110,7 +109,7 @@
         "url": "/events/smite-club-open-2026"
       },
       "secondary_ctas": [
-        { "label": "Join Discord for Updates", "url": "https://discord.gg/smiteclub" }
+        { "label": "Check Back for Updates", "url": "/events/smite-club-open-2026" }
       ],
       "games": [
         "Warhammer 40K",
