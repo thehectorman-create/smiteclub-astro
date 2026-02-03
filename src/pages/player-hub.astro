@@ -5,19 +5,21 @@ import Layout from '../layouts/Layout.astro';
 <Layout title="Player Hub | Smite Club">
   <style>
     .hero {
-      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
       padding: 80px 0;
       text-align: center;
+      border-bottom: 1px solid #e2e8f0;
     }
     
     .hero h1 {
       font-size: 48px;
       margin-bottom: 20px;
+      color: #1a1a1a;
     }
     
     .hero-sub {
       font-size: 20px;
-      color: #aaa;
+      color: #64748b;
     }
     
     .section {
@@ -27,25 +29,26 @@ import Layout from '../layouts/Layout.astro';
     .section-title {
       font-size: 32px;
       margin-bottom: 30px;
-      color: #c41e3a;
+      color: #1e40af;
     }
     
     .card {
-      background: #1a1a1a;
-      border: 1px solid #333;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
       border-radius: 12px;
       padding: 30px;
       margin-bottom: 30px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     }
     
     .card h3 {
       font-size: 24px;
       margin-bottom: 15px;
-      color: #fff;
+      color: #1a1a1a;
     }
     
     .card p {
-      color: #aaa;
+      color: #64748b;
       margin-bottom: 20px;
     }
     
@@ -62,17 +65,18 @@ import Layout from '../layouts/Layout.astro';
     .link-list li {
       margin: 15px 0;
       padding: 15px;
-      background: #222;
+      background: #f8fafc;
       border-radius: 6px;
       transition: background 0.3s;
+      border: 1px solid #e2e8f0;
     }
     
     .link-list li:hover {
-      background: #333;
+      background: #f1f5f9;
     }
     
     .link-list a {
-      color: #fff;
+      color: #1a1a1a;
       text-decoration: none;
       font-weight: 600;
       display: flex;
@@ -81,7 +85,7 @@ import Layout from '../layouts/Layout.astro';
     }
     
     .deadline {
-      background: #c41e3a;
+      background: #1e40af;
       color: white;
       padding: 20px;
       border-radius: 8px;
@@ -197,15 +201,15 @@ import Layout from '../layouts/Layout.astro';
         <div class="card" id="schedule">
           <h3>📅 Event Schedule</h3>
           <p>SEO 2025 — February 28 - March 1, 2026</p>
-          <div style="background: #222; padding: 20px; border-radius: 8px; margin-top: 15px;">
+          <div style="background: #f8fafc; padding: 20px; border-radius: 8px; margin-top: 15px; border: 1px solid #e2e8f0;">
             <p style="margin: 0;"><strong>Friday, Feb 28</strong></p>
-            <p style="color: #aaa; margin: 5px 0;">Registration: 5:00 PM - 8:00 PM</p>
+            <p style="color: #64748b; margin: 5px 0;">Registration: 5:00 PM - 8:00 PM</p>
             
             <p style="margin: 15px 0 0;"><strong>Saturday, Feb 29</strong></p>
-            <p style="color: #aaa; margin: 5px 0;">Round 1: 9:00 AM<br>Round 2: 11:30 AM<br>Lunch: 2:00 PM<br>Round 3: 3:00 PM</p>
+            <p style="color: #64748b; margin: 5px 0;">Round 1: 9:00 AM<br>Round 2: 11:30 AM<br>Lunch: 2:00 PM<br>Round 3: 3:00 PM</p>
             
             <p style="margin: 15px 0 0;"><strong>Sunday, March 1</strong></p>
-            <p style="color: #aaa; margin: 5px 0;">Round 4: 9:00 AM<br>Round 5: 11:30 AM<br>Awards: 3:00 PM</p>
+            <p style="color: #64748b; margin: 5px 0;">Round 4: 9:00 AM<br>Round 5: 11:30 AM<br>Awards: 3:00 PM</p>
           </div>
         </div>
 
@@ -217,13 +221,13 @@ import Layout from '../layouts/Layout.astro';
             <li>
               <a href="/documents/terrain-layouts.pdf">
                 Terrain Layout Guide
-                <span style="margin-left: auto; color: #c41e3a;">View →</span>
+                <span style="margin-left: auto; color: #1e40af;">View →</span>
               </a>
             </li>
             <li>
               <a href="/documents/mission-pack.pdf">
                 Mission Pack — Pariah Nexus
-                <span style="margin-left: auto; color: #c41e3a;">Download →</span>
+                <span style="margin-left: auto; color: #1e40af;">Download →</span>
               </a>
             </li>
             <li>
@@ -236,7 +240,7 @@ import Layout from '../layouts/Layout.astro';
         <div class="card" id="painting">
           <h3>🖌️ Painting Requirements</h3>
           <p>Battle Ready standard and ITC guidelines</p>
-          <ul style="color: #aaa; margin: 15px 0; padding-left: 20px;">
+          <ul style="color: #64748b; margin: 15px 0; padding-left: 20px;">
             <li style="margin: 10px 0;">3-color minimum (base, shade, highlight)</li>
             <li style="margin: 10px 0;">Bases painted/flocked</li>
             <li style="margin: 10px 0;">No unpainted models on table</li>
@@ -270,19 +274,19 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- JUDGES & CONTACT -->
-  <section class="section" style="background: #111;">
+  <section class="section" style="background: #f8fafc; border-top: 1px solid #e2e8f0;">
     <div class="container">
       <h2 class="section-title">👨‍⚖️ Judges & Rules Questions</h2>
       <div class="two-col">
         <div class="card">
           <h3>Rules Questions</h3>
           <p>Email our head judge for pre-event rules clarifications:</p>
-          <p style="font-size: 20px; color: #c41e3a; font-weight: 700;">info@smiteclub40k.com</p>
-          <p style="color: #aaa;">Include "Rules Question — SEO 2025" in subject line</p>
+          <p style="font-size: 20px; color: #1e40af; font-weight: 700;">info@smiteclub40k.com</p>
+          <p style="color: #64748b;">Include "Rules Question — SEO 2025" in subject line</p>
         </div>
         <div class="card">
           <h3>Day-of Event Contact</h3>
-          <p>During the event, find a judge in the red staff shirts or visit the TO table.</p>
+          <p>During the event, find a judge in the staff shirts or visit the TO table.</p>
           <p style="margin-top: 20px;">
             <a href="https://discord.gg/smiteclub" target="_blank" class="btn">Join Discord for Real-Time Updates</a>
           </p>

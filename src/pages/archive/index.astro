@@ -5,14 +5,16 @@ import Layout from '../../layouts/Layout.astro';
 <Layout title="Event Archive | Smite Club">
   <style>
     .hero {
-      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
       padding: 80px 0;
       text-align: center;
+      border-bottom: 1px solid #e2e8f0;
     }
     
     .hero h1 {
       font-size: 48px;
       margin-bottom: 20px;
+      color: #1a1a1a;
     }
     
     .section {
@@ -22,7 +24,7 @@ import Layout from '../../layouts/Layout.astro';
     .section-title {
       font-size: 32px;
       margin-bottom: 30px;
-      color: #c41e3a;
+      color: #1e40af;
     }
     
     .year-section {
@@ -33,7 +35,8 @@ import Layout from '../../layouts/Layout.astro';
       font-size: 28px;
       margin-bottom: 20px;
       padding-bottom: 10px;
-      border-bottom: 2px solid #333;
+      border-bottom: 2px solid #e2e8f0;
+      color: #1a1a1a;
     }
     
     .event-grid {
@@ -43,49 +46,51 @@ import Layout from '../../layouts/Layout.astro';
     }
     
     .event-card {
-      background: #1a1a1a;
-      border: 1px solid #333;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
       border-radius: 12px;
       padding: 30px;
       text-decoration: none;
       color: inherit;
       transition: background 0.3s, border-color 0.3s;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     }
     
     .event-card:hover {
-      background: #222;
-      border-color: #c41e3a;
+      background: #f8fafc;
+      border-color: #1e40af;
     }
     
     .event-card h3 {
       font-size: 24px;
       margin-bottom: 10px;
-      color: #c41e3a;
+      color: #1e40af;
     }
     
     .event-card .date {
-      color: #aaa;
+      color: #64748b;
       margin-bottom: 15px;
     }
     
     .event-card .highlights {
-      color: #ccc;
+      color: #475569;
       font-size: 14px;
     }
     
     .event-card .highlights span {
       display: inline-block;
-      background: #333;
+      background: #f1f5f9;
       padding: 4px 10px;
       border-radius: 4px;
       margin: 5px 5px 0 0;
+      color: #1e40af;
     }
   </style>
 
   <section class="hero">
     <div class="container">
       <h1>Event Archive</h1>
-      <p style="color: #aaa; font-size: 20px;">Results, winners, and memories from past tournaments</p>
+      <p style="color: #64748b; font-size: 20px;">Results, winners, and memories from past tournaments</p>
     </div>
   </section>
 
