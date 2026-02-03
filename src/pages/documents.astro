@@ -2,45 +2,43 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Documents | Scorched Earth Open 2025">
+<Layout title="Documents | Smite Club">
   <style>
     .hero {
-      background: #0d0b08;
-      padding: 60px 0;
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      padding: 80px 0;
       text-align: center;
-      border-bottom: 3px solid #c9a45c;
+      border-bottom: 3px solid #7dd3fc;
     }
     
     .hero h1 {
-      font-size: 42px;
-      margin-bottom: 15px;
-      color: #c9a45c;
-      text-transform: uppercase;
-      letter-spacing: 2px;
+      font-size: 48px;
+      margin-bottom: 20px;
+      color: #0a0a1a;
     }
     
     .section {
-      padding: 50px 0;
+      padding: 60px 0;
     }
     
     .section-title {
-      font-size: 24px;
-      margin-bottom: 20px;
-      color: #c9a45c;
-      border-bottom: 2px solid #3d2e1f;
-      padding-bottom: 10px;
+      font-size: 32px;
+      margin-bottom: 30px;
+      color: #0a0a1a;
+      border-bottom: 2px solid #e0f2fe;
+      padding-bottom: 15px;
     }
     
     .doc-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 15px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
     }
     
     .doc-item {
-      background: #1a1209;
-      border: 2px solid #3d2e1f;
-      border-radius: 6px;
+      background: #ffffff;
+      border: 2px solid #bae6fd;
+      border-radius: 8px;
       padding: 20px;
       display: flex;
       align-items: center;
@@ -48,41 +46,43 @@ import Layout from '../layouts/Layout.astro';
       text-decoration: none;
       color: inherit;
       transition: border-color 0.3s;
+      box-shadow: 0 2px 8px rgba(125,211,252,0.15);
     }
     
     .doc-item:hover {
-      border-color: #c9a45c;
+      border-color: #0ea5e9;
     }
     
     .doc-icon {
-      font-size: 28px;
+      font-size: 32px;
     }
     
     .doc-info h3 {
-      font-size: 16px;
+      font-size: 18px;
       margin-bottom: 5px;
-      color: #f5f5f5;
+      color: #0a0a1a;
     }
     
     .doc-info p {
-      color: #808080;
-      font-size: 13px;
+      color: #64748b;
+      font-size: 14px;
     }
     
     .doc-arrow {
       margin-left: auto;
-      color: #c9a45c;
+      color: #0ea5e9;
+      font-size: 20px;
     }
     
     .category {
-      margin-bottom: 40px;
+      margin-bottom: 50px;
     }
   </style>
 
   <section class="hero">
     <div class="container">
-      <h1>Event Documents</h1>
-      <p style="color: #a0a0a0; font-size: 18px;">Official packets, rules, and information</p>
+      <h1>Club Documents</h1>
+      <p style="color: #64748b; font-size: 20px;">Official rules, player packets, and event information</p>
     </div>
   </section>
 
@@ -91,7 +91,7 @@ import Layout from '../layouts/Layout.astro';
       
       <!-- CURRENT EVENT -->
       <div class="category">
-        <h2 class="section-title">Scorched Earth Open 2025</h2>
+        <h2 class="section-title">🏆 Scorched Earth Open 2025</h2>
         <div class="doc-grid">
           <a href="/documents/seo-2025-40k-packet.pdf" class="doc-item">
             <span class="doc-icon">📋</span>
@@ -124,22 +124,22 @@ import Layout from '../layouts/Layout.astro';
             <span class="doc-icon">🎯</span>
             <div class="doc-info">
               <h3>Mission Pack</h3>
-              <p>Pariah Nexus missions</p>
+              <p>Pariah Nexus tournament missions</p>
             </div>
             <span class="doc-arrow">→</span>
           </a>
         </div>
       </div>
 
-      <!-- GENERAL -->
+      <!-- GENERAL DOCUMENTS -->
       <div class="category">
-        <h2 class="section-title">Tournament Information</h2>
+        <h2 class="section-title">📜 General Information</h2>
         <div class="doc-grid">
           <a href="/documents/itc-code-of-conduct.pdf" class="doc-item">
             <span class="doc-icon">⚖️</span>
             <div class="doc-info">
-              <h3>Code of Conduct</h3>
-              <p>Sportsmanship and behavior</p>
+              <h3>ITC Code of Conduct</h3>
+              <p>Sportsmanship and behavior standards</p>
             </div>
             <span class="doc-arrow">→</span>
           </a>
@@ -147,8 +147,17 @@ import Layout from '../layouts/Layout.astro';
           <a href="/documents/itc-painting-standards.pdf" class="doc-item">
             <span class="doc-icon">🖌️</span>
             <div class="doc-info">
-              <h3>Painting Standards</h3>
+              <h3>ITC Painting Standards</h3>
               <p>Battle ready requirements</p>
+            </div>
+            <span class="doc-arrow">→</span>
+          </a>
+          
+          <a href="/documents/refund-policy.pdf" class="doc-item">
+            <span class="doc-icon">💰</span>
+            <div class="doc-info">
+              <h3>Refund Policy</h3>
+              <p>Ticket cancellation and transfer rules</p>
             </div>
             <span class="doc-arrow">→</span>
           </a>
@@ -157,7 +166,7 @@ import Layout from '../layouts/Layout.astro';
             <span class="doc-icon">📍</span>
             <div class="doc-info">
               <h3>Venue Guide</h3>
-              <p>Parking, hotels, food</p>
+              <p>Parking, hotels, food options</p>
             </div>
             <span class="doc-arrow">→</span>
           </a>
