@@ -3,8 +3,13 @@ import Layout from '../layouts/Layout.astro';
 import EventCard from '../components/EventCard.astro';
 import eventsData from '../data/events.json';
 
-const upcomingEvents = eventsData.events.filter(e => e.status === 'upcoming');
-const pastEvents = eventsData.past_events.slice(0, 3);
+const upcomingEvents = eventsData.events.filter(e => e.status === 'upcoming' || e.status === 'announced');
+const allReadyDocuments = upcomingEvents.flatMap(e => 
+  (e.documents || []).filter(d => d.is_ready).map(d => ({ ...d, eventName: e.short_name }))
+);
+const allDeadlines = upcomingEvents.flatMap(e => 
+  (e.deadlines || []).map(d => ({ ...d, eventName: e.short_name }))
+);
 ---
 
 <Layout title="Player Hub | Smite Club">
@@ -41,72 +46,71 @@ const pastEvents = eventsData.past_events.slice(0, 3);
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
       gap: 25px;
-      margin-bottom: 40px;
+      margin-bottom: 50px;
     }
     
-    .deadline-card {
-      background: #0a0a1a;
-      color: white;
-      padding: 25px;
+    .card {
+      background: #ffffff;
+      border: 2px solid #e2e8f0;
       border-radius: 12px;
-      border: 3px solid #7dd3fc;
+      padding: 30px;
       margin-bottom: 30px;
     }
     
-    .deadline-card h3 {
-      color: #7dd3fc;
-      margin-bottom: 15px;
-      font-size: 20px;
-    }
-    
-    .deadline-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-    
-    .deadline-item {
-      background: rgba(255,255,255,0.1);
-      padding: 15px;
-      border-radius: 8px;
-    }
-    
-    .deadline-item .date {
-      font-weight: 700;
-      color: #c9a45c;
-      font-size: 16px;
-    }
-    
-    .deadline-item .label {
-      font-size: 14px;
-      color: #94a3b8;
-      margin-top: 5px;
-    }
-    
-    .downloads-table {
+    .docs-table {
       width: 100%;
       border-collapse: collapse;
-      margin-bottom: 40px;
     }
     
-    .downloads-table th,
-    .downloads-table td {
+    .docs-table th,
+    .docs-table td {
       padding: 15px;
       text-align: left;
       border-bottom: 1px solid #e2e8f0;
     }
     
-    .downloads-table th {
+    .docs-table th {
       background: #f8fafc;
       font-weight: 700;
       color: #0a0a1a;
-      font-size: 14px;
+      font-size: 13px;
       text-transform: uppercase;
-      letter-spacing: 1px;
     }
     
-    .downloads-table td {
+    .docs-table td {
       color: #475569;
+    }
+    
+    .deadline-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 18px 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    
+    .deadline-row:last-child {
+      border-bottom: none;
+    }
+    
+    .deadline-info h4 {
+      font-size: 16px;
+      color: #0a0a1a;
+      margin-bottom: 5px;
+    }
+    
+    .deadline-info p {
+      color: #64748b;
+      font-size: 14px;
+      margin: 0;
+    }
+    
+    .deadline-date {
+      color: #c9a45c;
+      font-weight: 700;
+      font-size: 15px;
+      white-space: nowrap;
+      margin-left: 20px;
     }
     
     .tool-grid {
@@ -119,7 +123,7 @@ const pastEvents = eventsData.past_events.slice(0, 3);
       background: #ffffff;
       border: 2px solid #e2e8f0;
       border-radius: 8px;
-      padding: 20px;
+      padding: 25px;
       text-align: center;
       transition: border-color 0.3s;
     }
@@ -131,6 +135,7 @@ const pastEvents = eventsData.past_events.slice(0, 3);
     .tool-card h4 {
       color: #0a0a1a;
       margin-bottom: 10px;
+      font-size: 16px;
     }
     
     .tool-card p {
@@ -143,6 +148,7 @@ const pastEvents = eventsData.past_events.slice(0, 3);
       color: #0ea5e9;
       font-weight: 600;
       text-decoration: none;
+      font-size: 14px;
     }
   </style>
 
@@ -156,7 +162,7 @@ const pastEvents = eventsData.past_events.slice(0, 3);
   <section class="section">
     <div class="container">
       
-      <!-- UPCOMING EVENTS -->
+      <!-- EVENTS -->
       <h2 class="section-title">Upcoming Events</h2>
       <div class="events-grid">
         {upcomingEvents.map(event => (
@@ -164,102 +170,93 @@ const pastEvents = eventsData.past_events.slice(0, 3);
             id={event.id}
             short_name={event.short_name}
             full_name={event.full_name}
-            date_display={event.date_display}
+            date_range_display={event.date_range_display}
             city={event.city}
             state={event.state}
             ticket_price={event.ticket_price}
-            ticket_url={event.ticket_url}
+            primary_cta={event.primary_cta}
+            secondary_ctas={event.secondary_ctas}
             is_flagship={event.is_flagship}
             games={event.games}
-            compact={true}
+            status={event.status}
           />
         ))}
       </div>
 
       <!-- KEY DEADLINES -->
-      <div class="deadline-card">
-        <h3>⚠️ Key Deadlines</h3>
-        <div class="deadline-list">
-          <div class="deadline-item">
-            <div class="date">February 21, 2026</div>
-            <div class="label">Scorched Earth Open — List Submission (BCP)</div>
+      {allDeadlines.length > 0 && (
+        <>
+          <h2 class="section-title" id="deadlines">Key Deadlines</h2>
+          <div class="card">
+            {allDeadlines.map(d => (
+              <div class="deadline-row">
+                <div class="deadline-info">
+                  <h4>{d.label} <span style="color: #64748b; font-weight: 400;">({d.eventName})</span></h4>
+                  <p>{d.note}</p>
+                </div>
+                <span class="deadline-date">{d.date}</span>
+              </div>
+            ))}
           </div>
-          <div class="deadline-item">
-            <div class="date">February 28, 2026</div>
-            <div class="label">Scorched Earth Open — Day 1 Check-in</div>
-          </div>
-          <div class="deadline-item">
-            <div class="date">TBA</div>
-            <div class="label">Smite Club Open 2026 — Registration Opens</div>
-          </div>
-        </div>
-      </div>
+        </>
+      )}
 
-      <!-- DOWNLOADS -->
+      <!-- DOCUMENTS -->
       <h2 class="section-title" id="documents">Event Documents</h2>
-      <table class="downloads-table">
-        <thead>
-          <tr>
-            <th>Document</th>
-            <th>Event</th>
-            <th>Type</th>
-            <th>Link</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>40K Player Packet</td>
-            <td>SEO 2026</td>
-            <td>Rules & Format</td>
-            <td><a href="/documents/seo-2026-40k-packet.pdf" class="btn" style="padding: 8px 16px; font-size: 13px;">Download</a></td>
-          </tr>
-          <tr>
-            <td>AoS Player Packet</td>
-            <td>SEO 2026</td>
-            <td>Rules & Format</td>
-            <td><a href="/documents/seo-2026-aos-packet.pdf" class="btn" style="padding: 8px 16px; font-size: 13px;">Download</a></td>
-          </tr>
-          <tr>
-            <td>Terrain Layout Guide</td>
-            <td>All Events</td>
-            <td>Terrain</td>
-            <td><a href="/documents/terrain-layouts.pdf" class="btn" style="padding: 8px 16px; font-size: 13px;">Download</a></td>
-          </tr>
-          <tr>
-            <td>Code of Conduct</td>
-            <td>All Events</td>
-            <td>Rules</td>
-            <td><a href="/documents/code-of-conduct.pdf" class="btn" style="padding: 8px 16px; font-size: 13px;">Download</a></td>
-          </tr>
-          <tr>
-            <td>FAQ</td>
-            <td>All Events</td>
-            <td>Info</td>
-            <td><a href="#faq" class="btn btn-outline" style="padding: 8px 16px; font-size: 13px;">View</a></td>
-          </tr>
-        </tbody>
-      </table>
+      {allReadyDocuments.length > 0 ? (
+        <div class="card">
+          <table class="docs-table">
+            <thead>
+              <tr>
+                <th>Document</th>
+                <th>Event</th>
+                <th>For</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {allReadyDocuments.map(doc => (
+                <tr>
+                  <td>{doc.title}</td>
+                  <td>{doc.eventName}</td>
+                  <td style="font-size: 14px;">{doc.audience}</td>
+                  <td style="text-align: right;">
+                    <a href={doc.url} class="btn" style="padding: 8px 16px; font-size: 13px;">
+                      {doc.type === 'PDF' ? 'Download' : 'View'}
+                    </a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <div class="card" style="text-align: center; padding: 40px;">
+          <p style="color: #64748b;">Event documents will be posted here when available.</p>
+          <p style="color: #94a3b8; font-size: 14px; margin-top: 10px;">Join Discord for early announcements.</p>
+        </div>
+      )}
 
       <!-- TOOLS -->
       <h2 class="section-title">Tools & Links</h2>
       <div class="tool-grid">
         <div class="tool-card">
           <h4>📱 Best Coast Pairings</h4>
-          <p>Submit army lists and view pairings</p>
+          <p>Submit army lists</p>
           <a href="https://www.bestcoastpairings.com" target="_blank">Open BCP →</a>
         </div>
         <div class="tool-card">
           <h4>💬 Discord</h4>
-          <p>Join the community chat</p>
+          <p>Community chat</p>
           <a href="https://discord.gg/smiteclub" target="_blank">Join Discord →</a>
         </div>
         <div class="tool-card">
           <h4>📧 Contact</h4>
-          <p>Email for questions or support</p>
+          <p>Questions & support</p>
           <a href="mailto:info@smiteclub40k.com">Email Us →</a>
         </div>
         <div class="tool-card">
-          <h4>🛒 Storefront</h4>
+          <h4>🛒 Store</h4>
           <p>Purchase tickets</p>
           <a href="https://www.smiteclub40k.com/store" target="_blank">Shop Now →</a>
         </div>

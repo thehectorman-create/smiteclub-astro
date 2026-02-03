@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import SponsorStrip from '../components/SponsorStrip.astro';
 ---
 
 <Layout title="Team Smite Club | Competitive Tabletop Team">
@@ -97,9 +96,9 @@ import SponsorStrip from '../components/SponsorStrip.astro';
       background: #f0f9ff;
       border: 2px solid #bae6fd;
       border-radius: 12px;
-      padding: 40px;
+      padding: 50px;
       max-width: 600px;
-      margin: 0 auto;
+      margin: 0 auto 60px;
       text-align: center;
     }
     
@@ -121,11 +120,16 @@ import SponsorStrip from '../components/SponsorStrip.astro';
       margin-top: 40px;
     }
     
-    .photo-placeholder {
-      background: #f8fafc;
-      border: 2px dashed #cbd5e1;
+    .photo-card {
+      background: #ffffff;
+      border: 2px solid #e2e8f0;
       border-radius: 8px;
-      aspect-ratio: 16/9;
+      overflow: hidden;
+    }
+    
+    .photo-placeholder {
+      aspect-ratio: 4/3;
+      background: #f8fafc;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -135,18 +139,26 @@ import SponsorStrip from '../components/SponsorStrip.astro';
       padding: 20px;
     }
     
-    .photo-placeholder.team {
-      aspect-ratio: 4/3;
-    }
-    
     .photo-placeholder span {
-      font-size: 18px;
-      font-weight: 600;
+      font-size: 48px;
       margin-bottom: 10px;
     }
     
-    .photo-placeholder small {
+    .photo-card .caption {
+      padding: 15px;
+      background: #ffffff;
+    }
+    
+    .photo-card .caption h4 {
+      font-size: 15px;
+      color: #0a0a1a;
+      margin: 0 0 5px 0;
+    }
+    
+    .photo-card .caption p {
       font-size: 13px;
+      color: #64748b;
+      margin: 0;
     }
   </style>
 
@@ -226,12 +238,14 @@ import SponsorStrip from '../components/SponsorStrip.astro';
 
   <section class="section" style="background: #f8fafc;">
     <div class="container">
-      <h2 class="section-title">How to Join</h2>
       <div class="join-section">
-        <h3>Interested in competing with the team?</h3>
+        <h3>Interested in joining?</h3>
         <p>We're looking for dedicated players who want to travel and compete at the highest level. 
            Prior tournament experience and commitment to practice sessions preferred.</p>
-        <a href="mailto:team@smiteclub40k.com?subject=Team Smite Club Interest" class="btn">Email team@smiteclub40k.com</a>
+        <p style="margin-bottom: 20px; font-size: 14px; color: #64748b;">
+          Want to run events with us or join a travel roster?
+        </p>
+        <a href="/contact" class="btn" style="background: #0a0a1a; color: white; padding: 14px 32px;">Contact Us</a>
       </div>
     </div>
   </section>
@@ -240,24 +254,37 @@ import SponsorStrip from '../components/SponsorStrip.astro';
     <div class="container">
       <h2 class="section-title">Team Photos</h2>
       <div class="photos-grid">
-        <div class="photo-placeholder team">
-          <span>📸 Team Photo</span>
-          <small>Challengers Cup 2025 team photo</small>
-          <small style="color: #94a3b8; margin-top: 5px;">[Image: file_10---af2b7e53-115a-431f-a271-d5dbcf695632.heic]</small>
+        <div class="photo-card">
+          <div class="photo-placeholder">
+            <span>📸</span>
+            <small>Challengers Cup 2025</small>
+          </div>
+          <div class="caption">
+            <h4>Team Photo</h4>
+            <p>Challengers Cup 2025 — Team Smite Club representation</p>
+          </div>
         </div>
-        <div class="photo-placeholder">
-          <span>📸 Event Action</span>
-          <small>Tournament gameplay shot</small>
-          <small style="color: #94a3b8; margin-top: 5px;">[Placeholder: Match in progress]</small>
+        <div class="photo-card">
+          <div class="photo-placeholder">
+            <span>🎲</span>
+            <small>Tournament floor</small>
+          </div>
+          <div class="caption">
+            <h4>Event Action</h4>
+            <p>Match in progress at a major event</p>
+          </div>
         </div>
-        <div class="photo-placeholder">
-          <span>📸 Team Gathering</span>
-          <small>Post-event team dinner</small>
-          <small style="color: #94a3b8; margin-top: 5px;">[Placeholder: Group dinner photo]</small>
+        <div class="photo-card">
+          <div class="photo-placeholder">
+            <span>🍻</span>
+            <small>Post-event gathering</small>
+          </div>
+          <div class="caption">
+            <h4>Team Gathering</h4>
+            <p>Post-event dinner and strategy session</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
-
-  <SponsorStrip title="Team Sponsors" />
 </Layout>

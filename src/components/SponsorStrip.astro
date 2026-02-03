@@ -4,20 +4,29 @@ export interface Props {
   sponsors?: string[];
 }
 
-const { title = "Our Sponsors", sponsors = ["placeholder-1", "placeholder-2", "placeholder-3", "placeholder-4"] } = Astro.props;
+const { 
+  title = "Our Sponsors", 
+  sponsors = [] 
+} = Astro.props;
+
+// Only show if we have 4+ real sponsors
+const hasEnoughSponsors = sponsors.length >= 4;
 ---
 
-<div class="sponsor-strip">
-  <p class="sponsor-title">{title}</p>
-  <div class="sponsor-logos">
-    {sponsors.map((sponsor, index) => (
-      <div class="sponsor-placeholder">
-        <span>[Sponsor {index + 1}]</span>
-        <small>Logo placeholder</small>
-      </div>
-    ))}
+{hasEnoughSponsors ? (
+  <div class="sponsor-strip">
+    <p class="sponsor-title">{title}</p>
+    <div class="sponsor-logos">
+      {sponsors.map((sponsor, index) => (
+        <img src={sponsor} alt={`Sponsor ${index + 1}`} class="sponsor-logo" />
+      ))}
+    </div>
   </div>
-</div>
+) : (
+  <div class="sponsor-text-row">
+    <p>Sponsors: Coming soon. <a href="/sponsors">Interested? See sponsorship deck.</a></p>
+  </div>
+)}
 
 <style>
   .sponsor-strip {
@@ -44,25 +53,33 @@ const { title = "Our Sponsors", sponsors = ["placeholder-1", "placeholder-2", "p
     align-items: center;
   }
   
-  .sponsor-placeholder {
-    width: 150px;
-    height: 80px;
-    background: #ffffff;
-    border: 2px dashed #cbd5e1;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: #94a3b8;
+  .sponsor-logo {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
   }
   
-  .sponsor-placeholder span {
+  .sponsor-text-row {
+    background: #f8fafc;
+    border-top: 2px solid #e2e8f0;
+    border-bottom: 2px solid #e2e8f0;
+    padding: 20px 0;
+    text-align: center;
+  }
+  
+  .sponsor-text-row p {
+    margin: 0;
+    color: #64748b;
     font-size: 14px;
+  }
+  
+  .sponsor-text-row a {
+    color: #0ea5e9;
+    text-decoration: none;
     font-weight: 600;
   }
   
-  .sponsor-placeholder small {
-    font-size: 11px;
+  .sponsor-text-row a:hover {
+    text-decoration: underline;
   }
 </style>

@@ -5,9 +5,8 @@ import SponsorStrip from '../components/SponsorStrip.astro';
 import SocialProof from '../components/SocialProof.astro';
 import eventsData from '../data/events.json';
 
-const upcomingEvents = eventsData.events.filter(e => e.status === 'upcoming');
-const seoEvent = upcomingEvents.find(e => e.id === 'scorched-earth-open-2026');
-const scoEvent = upcomingEvents.find(e => e.id === 'smite-club-open-2026');
+const upcomingEvents = eventsData.events.filter(e => e.status === 'upcoming' || e.status === 'announced');
+const flagshipEvents = upcomingEvents.filter(e => e.id === 'scorched-earth-open-2026' || e.id === 'smite-club-open-2026');
 ---
 
 <Layout title="Smite Club | Arizona's Competitive Tabletop Club">
@@ -20,18 +19,21 @@ const scoEvent = upcomingEvents.find(e => e.id === 'smite-club-open-2026');
     }
     
     .hero h1 {
-      font-size: 44px;
+      font-size: 42px;
       margin-bottom: 20px;
       line-height: 1.2;
-      max-width: 800px;
+      max-width: 850px;
       margin-left: auto;
       margin-right: auto;
     }
     
     .hero .subtitle {
-      font-size: 22px;
-      color: #7dd3fc;
+      font-size: 20px;
+      color: #94a3b8;
       margin-bottom: 40px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
     }
     
     .hero-buttons {
@@ -39,7 +41,7 @@ const scoEvent = upcomingEvents.find(e => e.id === 'smite-club-open-2026');
       gap: 15px;
       justify-content: center;
       flex-wrap: wrap;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
     }
     
     .hero .btn {
@@ -68,8 +70,8 @@ const scoEvent = upcomingEvents.find(e => e.id === 'smite-club-open-2026');
     
     .ticket-note {
       font-size: 13px;
-      color: #94a3b8;
-      margin-top: 10px;
+      color: #64748b;
+      margin-top: 15px;
     }
     
     .section {
@@ -89,20 +91,17 @@ const scoEvent = upcomingEvents.find(e => e.id === 'smite-club-open-2026');
       gap: 30px;
     }
     
-    .charity-block {
-      background: #f0f9ff;
-      border: 2px solid #bae6fd;
-      border-radius: 8px;
-      padding: 20px;
+    .community-section {
+      background: #f8fafc;
+      padding: 40px 0;
+      border-top: 2px solid #e2e8f0;
       text-align: center;
-      max-width: 600px;
-      margin: 60px auto 0;
     }
     
-    .charity-block p {
+    .community-section p {
+      color: #64748b;
+      font-size: 15px;
       margin: 0;
-      color: #475569;
-      font-size: 14px;
     }
   </style>
 
@@ -115,49 +114,34 @@ const scoEvent = upcomingEvents.find(e => e.id === 'smite-club-open-2026');
       <div class="hero-buttons">
         <a href="/events/scorched-earth-open-2026" class="btn btn-primary">Get Tickets</a>
         <a href="https://discord.gg/smiteclub" target="_blank" class="btn btn-outline">Join Discord</a>
-        <a href="/player-hub" class="btn btn-outline">View Event Packets</a>
+        <a href="/player-hub" class="btn btn-outline">View Player Packets</a>
       </div>
       
       <p class="ticket-note">Tickets are sold through our official storefront.</p>
     </div>
   </section>
 
-  <!-- EVENTS -->
+  <!-- FLAGSHIP EVENTS -->
   <section class="section">
     <div class="container">
       <h2 class="section-title">Our Flagship Events</h2>
       <div class="events-showcase">
-        {seoEvent && (
+        {flagshipEvents.map(event => (
           <EventCard 
-            id={seoEvent.id}
-            short_name="Scorched Earth Open"
-            full_name={seoEvent.full_name}
-            date_display={seoEvent.date_display}
-            city={seoEvent.city}
-            state={seoEvent.state}
-            ticket_price={seoEvent.ticket_price}
-            ticket_url={seoEvent.ticket_url}
-            is_flagship={false}
-            games={seoEvent.games}
+            id={event.id}
+            short_name={event.short_name}
+            full_name={event.full_name}
+            date_range_display={event.date_range_display}
+            city={event.city}
+            state={event.state}
+            ticket_price={event.ticket_price}
+            primary_cta={event.primary_cta}
+            secondary_ctas={event.secondary_ctas}
+            is_flagship={event.is_flagship}
+            games={event.games}
+            status={event.status}
           />
-        )}
-        {scoEvent && (
-          <EventCard 
-            id={scoEvent.id}
-            short_name="Smite Club Open"
-            full_name={scoEvent.full_name}
-            date_display={scoEvent.date_display}
-            city={scoEvent.city}
-            state={scoEvent.state}
-            ticket_price={scoEvent.ticket_price}
-            is_flagship={true}
-            games={scoEvent.games}
-          />
-        )}
-      </div>
-      
-      <div class="charity-block">
-        <p>❤️ 50% of proceeds from all events benefit local schools and community programs</p>
+        ))}
       </div>
     </div>
   </section>
@@ -165,14 +149,21 @@ const scoEvent = upcomingEvents.find(e => e.id === 'smite-club-open-2026');
   <!-- SOCIAL PROOF -->
   <SocialProof />
 
+  <!-- COMMUNITY NOTE -->
+  <section class="community-section">
+    <div class="container">
+      <p>Community: A portion of proceeds from all events supports local schools and community partners.</p>
+    </div>
+  </section>
+
   <!-- SPONSORS -->
   <SponsorStrip title="Our Sponsors" />
 
-  <!-- CTA -->
+  <!-- FINAL CTA -->
   <section class="section" style="background: linear-gradient(135deg, #0a0a1a 0%, #1e293b 100%); color: white; text-align: center;">
     <div class="container">
       <h2 style="font-size: 32px; margin-bottom: 20px;">Ready to compete?</h2>
-      <p style="font-size: 18px; color: #94a3b8; margin-bottom: 30px;">Join 200+ players for competitive tabletop gaming with a community that travels.</p>
+      <p style="font-size: 18px; color: #94a3b8; margin-bottom: 30px;">Join players from across the Southwest for competitive tabletop gaming.</p>
       <a href="/events/scorched-earth-open-2026" class="btn btn-primary" style="font-size: 18px; padding: 16px 40px;">Get Tickets for Scorched Earth Open 2026</a>
     </div>
   </section>

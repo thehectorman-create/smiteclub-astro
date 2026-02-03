@@ -28,54 +28,48 @@ import Layout from '../layouts/Layout.astro';
       text-align: center;
     }
     
-    .sponsor-tier {
-      margin-bottom: 60px;
-    }
-    
-    .tier-title {
-      font-size: 20px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: #64748b;
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    
-    .sponsor-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 30px;
-      justify-items: center;
-    }
-    
-    .sponsor-placeholder {
+    .tiers-table {
       width: 100%;
-      max-width: 250px;
-      aspect-ratio: 3/2;
-      background: #f8fafc;
-      border: 2px dashed #cbd5e1;
-      border-radius: 12px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: #64748b;
-      text-align: center;
+      max-width: 900px;
+      margin: 0 auto 60px;
+      border-collapse: collapse;
+    }
+    
+    .tiers-table th,
+    .tiers-table td {
       padding: 20px;
+      text-align: left;
+      border-bottom: 1px solid #e2e8f0;
     }
     
-    .sponsor-placeholder.large {
-      max-width: 350px;
+    .tiers-table th {
+      background: #0a0a1a;
+      color: white;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 13px;
     }
     
-    .sponsor-placeholder span {
-      font-size: 16px;
-      font-weight: 600;
+    .tiers-table tr:nth-child(even) {
+      background: #f8fafc;
     }
     
-    .sponsor-placeholder small {
-      font-size: 12px;
-      margin-top: 8px;
+    .tier-name {
+      font-weight: 700;
+      color: #0a0a1a;
+    }
+    
+    .tier-price {
+      color: #c9a45c;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    
+    .benefits-list {
+      font-size: 14px;
+      color: #475569;
+      line-height: 1.6;
     }
     
     .become-sponsor {
@@ -100,17 +94,36 @@ import Layout from '../layouts/Layout.astro';
       line-height: 1.6;
     }
     
-    .benefits-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
-      margin: 30px 0;
-      text-align: left;
+    .contact-block {
+      background: #f0f9ff;
+      border: 2px solid #bae6fd;
+      border-radius: 12px;
+      padding: 40px;
+      max-width: 500px;
+      margin: 40px auto 0;
+      text-align: center;
     }
     
-    .benefits-list li {
-      color: #7dd3fc;
-      font-size: 15px;
+    .contact-block h3 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      color: #0a0a1a;
+    }
+    
+    .contact-block p {
+      color: #475569;
+      margin-bottom: 20px;
+    }
+    
+    .contact-block a {
+      color: #0ea5e9;
+      font-weight: 700;
+      font-size: 16px;
+      text-decoration: none;
+    }
+    
+    .contact-block a:hover {
+      text-decoration: underline;
     }
   </style>
 
@@ -123,60 +136,42 @@ import Layout from '../layouts/Layout.astro';
 
   <section class="section">
     <div class="container">
-      
-      <!-- PLATINUM TIER -->
-      <div class="sponsor-tier">
-        <h2 class="tier-title">Platinum Partners</h2>
-        <div class="sponsor-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
-          <div class="sponsor-placeholder large">
-            <span>[Your Logo Here]</span>
-            <small>Platinum sponsor placement</small>
-          </div>
-          <div class="sponsor-placeholder large">
-            <span>[Your Logo Here]</span>
-            <small>Platinum sponsor placement</small>
-          </div>
-        </div>
-      </div>
-
-      <!-- GOLD TIER -->
-      <div class="sponsor-tier">
-        <h2 class="tier-title">Gold Sponsors</h2>
-        <div class="sponsor-grid">
-          <div class="sponsor-placeholder">
-            <span>[Gold Sponsor]</span>
-            <small>Logo placeholder</small>
-          </div>
-          <div class="sponsor-placeholder">
-            <span>[Gold Sponsor]</span>
-            <small>Logo placeholder</small>
-          </div>
-          <div class="sponsor-placeholder">
-            <span>[Gold Sponsor]</span>
-            <small>Logo placeholder</small>
-          </div>
-        </div>
-      </div>
-
-      <!-- SILVER TIER -->
-      <div class="sponsor-tier">
-        <h2 class="tier-title">Silver Sponsors</h2>
-        <div class="sponsor-grid" style="grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));">
-          <div class="sponsor-placeholder" style="max-width: 180px; aspect-ratio: 1/1;">
-            <span style="font-size: 14px;">[Silver]</span>
-          </div>
-          <div class="sponsor-placeholder" style="max-width: 180px; aspect-ratio: 1/1;">
-            <span style="font-size: 14px;">[Silver]</span>
-          </div>
-          <div class="sponsor-placeholder" style="max-width: 180px; aspect-ratio: 1/1;">
-            <span style="font-size: 14px;">[Silver]</span>
-          </div>
-          <div class="sponsor-placeholder" style="max-width: 180px; aspect-ratio: 1/1;">
-            <span style="font-size: 14px;">[Silver]</span>
-          </div>
-        </div>
-      </div>
-
+      <h2 class="section-title">Sponsorship Tiers</h2>
+      <table class="tiers-table">
+        <thead>
+          <tr>
+            <th>Tier</th>
+            <th>Starting At</th>
+            <th>What's Included</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tier-name">Title Sponsor</td>
+            <td class="tier-price">Contact us</td>
+            <td class="benefits-list">
+              Logo on all materials • Top billing on website • Event naming rights • 
+              Booth space • Social media features • Player bag inserts
+            </td>
+          </tr>
+          <tr>
+            <td class="tier-name">Supporting Sponsor</td>
+            <td class="tier-price">$500</td>
+            <td class="benefits-list">
+              Logo on website & banners • Social media mentions • 
+              Table display space • Player bag inserts
+            </td>
+          </tr>
+          <tr>
+            <td class="tier-name">Prize Support</td>
+            <td class="tier-price">Product / $250</td>
+            <td class="benefits-list">
+              Logo on prize materials • Social media thanks • 
+              Product featured in prizing
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </section>
 
@@ -184,15 +179,14 @@ import Layout from '../layouts/Layout.astro';
     <div class="container">
       <div class="become-sponsor">
         <h2>Become a Sponsor</h2>
-        <p>Join the companies supporting competitive tabletop gaming in Arizona. Our sponsors get visibility across all events, digital properties, and direct access to 200+ engaged players.</p>
-        <ul class="benefits-list">
-          <li>Logo on all event materials</li>
-          <li>Website & social media features</li>
-          <li>On-site activation space</li>
-          <li>Direct player engagement</li>
-          <li>Discord community access</li>
-        </ul>
-        <a href="mailto:sponsors@smiteclub40k.com" class="btn" style="background: #c9a45c; color: #0a0a1a; font-size: 16px; padding: 14px 32px;">Contact sponsors@smiteclub40k.com</a>
+        <p>Join the companies supporting competitive tabletop gaming in Arizona. Our sponsors get visibility across all events, digital properties, and direct access to 200+ engaged players who travel and buy gear.</p>
+        <a href="mailto:sponsors@smiteclub40k.com" class="btn" style="background: #c9a45c; color: #0a0a1a; font-size: 16px; padding: 14px 32px;">Email sponsors@smiteclub40k.com</a>
+      </div>
+      
+      <div class="contact-block">
+        <h3>Need the full deck?</h3>
+        <p>We have a detailed sponsorship packet with audience demographics, past event metrics, and customizable packages.</p>
+        <a href="mailto:sponsors@smiteclub40k.com?subject=Sponsorship Packet Request">Request sponsorship packet →</a>
       </div>
     </div>
   </section>

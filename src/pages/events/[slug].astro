@@ -18,6 +18,10 @@ export function getStaticPaths() {
 }
 
 const { event } = Astro.props;
+const readyDocuments = event.documents?.filter(d => d.is_ready) || [];
+const hasSchedule = event.schedule && event.schedule.length > 0;
+const hasDeadlines = event.deadlines && event.deadlines.length > 0;
+const venueFinal = event.venue?.is_final;
 ---
 
 <Layout title={`${event.full_name} | Smite Club`}>
@@ -30,18 +34,18 @@ const { event } = Astro.props;
     }
     
     .hero h1 {
-      font-size: 48px;
+      font-size: 46px;
       margin-bottom: 15px;
     }
     
     .hero .subtitle {
-      font-size: 24px;
-      color: #7dd3fc;
+      font-size: 20px;
+      color: #c9a45c;
       margin-bottom: 10px;
     }
     
     .hero .meta {
-      font-size: 18px;
+      font-size: 17px;
       color: #94a3b8;
       margin-bottom: 30px;
     }
@@ -54,7 +58,7 @@ const { event } = Astro.props;
     }
     
     .hero .btn {
-      font-size: 16px;
+      font-size: 15px;
       padding: 14px 28px;
     }
     
@@ -81,12 +85,12 @@ const { event } = Astro.props;
     .two-col {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 60px;
+      gap: 50px;
     }
     
     .quick-facts {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 20px;
       margin-bottom: 40px;
     }
@@ -95,7 +99,6 @@ const { event } = Astro.props;
       background: #f8fafc;
       padding: 20px;
       border-radius: 8px;
-      border: 2px solid #e2e8f0;
     }
     
     .fact-label {
@@ -107,7 +110,7 @@ const { event } = Astro.props;
     }
     
     .fact-value {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 700;
       color: #0a0a1a;
     }
@@ -135,12 +138,35 @@ const { event } = Astro.props;
       margin: 10px 0;
     }
     
-    .schedule-day {
+    .differentiators {
+      background: #f0f9ff;
+      border-left: 4px solid #0ea5e9;
+      padding: 25px;
       margin-bottom: 30px;
     }
     
-    .schedule-day h4 {
+    .differentiators h3 {
       font-size: 18px;
+      margin-bottom: 15px;
+      color: #0a0a1a;
+    }
+    
+    .differentiators ul {
+      margin: 0;
+      padding-left: 20px;
+      color: #475569;
+    }
+    
+    .differentiators li {
+      margin: 8px 0;
+    }
+    
+    .schedule-day {
+      margin-bottom: 25px;
+    }
+    
+    .schedule-day h4 {
+      font-size: 17px;
       color: #0a0a1a;
       margin-bottom: 15px;
       padding-bottom: 10px;
@@ -150,50 +176,34 @@ const { event } = Astro.props;
     .schedule-item {
       display: flex;
       gap: 20px;
-      padding: 12px 0;
+      padding: 10px 0;
       border-bottom: 1px solid #f1f5f9;
-    }
-    
-    .schedule-item:last-child {
-      border-bottom: none;
     }
     
     .schedule-time {
       font-weight: 700;
       color: #0a0a1a;
-      min-width: 100px;
+      min-width: 90px;
     }
     
-    .venue-map-placeholder {
-      background: #f8fafc;
-      border: 2px dashed #cbd5e1;
-      border-radius: 8px;
-      height: 300px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: #64748b;
-      text-align: center;
-      padding: 20px;
-    }
-    
-    .downloads-table {
+    .docs-table {
       width: 100%;
       border-collapse: collapse;
     }
     
-    .downloads-table th,
-    .downloads-table td {
+    .docs-table th,
+    .docs-table td {
       padding: 15px;
       text-align: left;
       border-bottom: 1px solid #e2e8f0;
     }
     
-    .downloads-table th {
+    .docs-table th {
       background: #f8fafc;
       font-weight: 700;
       color: #0a0a1a;
+      font-size: 13px;
+      text-transform: uppercase;
     }
     
     .faq-item {
@@ -208,44 +218,41 @@ const { event } = Astro.props;
       padding-bottom: 0;
     }
     
-    .faq-question {
+    .faq-q {
       font-weight: 700;
       color: #0a0a1a;
       margin-bottom: 8px;
     }
     
-    .faq-answer {
+    .faq-a {
       color: #475569;
     }
     
-    .charity-block {
-      background: #f0f9ff;
-      border: 2px solid #bae6fd;
-      border-radius: 8px;
-      padding: 20px;
-      margin-top: 40px;
+    .community-block {
+      background: #f8fafc;
+      padding: 30px;
+      border-radius: 12px;
       text-align: center;
     }
     
-    .charity-block p {
-      margin: 0;
-      color: #475569;
-      font-size: 14px;
+    .community-block h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #0a0a1a;
     }
     
-    .sticky-cta {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: #ffffff;
-      border-top: 3px solid #7dd3fc;
-      padding: 15px 0;
-      box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
-      z-index: 50;
-      display: flex;
-      justify-content: center;
-      gap: 15px;
+    .community-block p {
+      color: #64748b;
+      margin: 0;
+    }
+    
+    .tbd-notice {
+      background: #f8fafc;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 20px;
+      color: #64748b;
+      text-align: center;
     }
     
     @media (max-width: 768px) {
@@ -253,7 +260,7 @@ const { event } = Astro.props;
         grid-template-columns: 1fr;
       }
       .hero h1 {
-        font-size: 36px;
+        font-size: 34px;
       }
     }
   </style>
@@ -261,20 +268,17 @@ const { event } = Astro.props;
   <!-- HERO -->
   <section class="hero">
     <div class="container">
-      <p class="subtitle">{event.is_flagship ? 'Flagship Event' : 'Upcoming Event'}</p>
+      <p class="subtitle">{event.is_flagship ? 'Flagship Event' : 'Flagship Event Series'}</p>
       <h1>{event.full_name}</h1>
-      <p class="meta">📅 {event.date_display} • 📍 {event.venue}, {event.city}, {event.state}</p>
+      <p class="meta">📅 {event.date_range_display} • 📍 {event.venue?.name || 'Phoenix, Arizona'}</p>
       
       <div class="hero-buttons">
-        {event.ticket_url ? (
-          <a href={event.ticket_url} class="btn btn-primary">Get Tickets — {event.ticket_price}</a>
-        ) : (
-          <span class="btn btn-outline" style="cursor: not-allowed;">Tickets Available Soon</span>
+        {event.primary_cta?.url && (
+          <a href={event.primary_cta.url} class="btn btn-primary">{event.primary_cta.label}</a>
         )}
-        {event.packet_url && (
-          <a href={event.packet_url} class="btn btn-outline">View Event Packets</a>
-        )}
-        <a href="/player-hub" class="btn btn-outline">Player Hub</a>
+        {event.secondary_ctas?.map(cta => (
+          <a href={cta.url} class="btn btn-outline">{cta.label}</a>
+        ))}
       </div>
     </div>
   </section>
@@ -295,39 +299,57 @@ const { event } = Astro.props;
           <div class="fact-label">Terrain</div>
           <div class="fact-value">{event.format?.terrain || 'GW Layouts'}</div>
         </div>
-        <div class="fact">
-          <div class="fact-label">Games</div>
-          <div class="fact-value">{event.games?.length || '8'} Systems</div>
-        </div>
+        {event.games && (
+          <div class="fact">
+            <div class="fact-label">Game Systems</div>
+            <div class="fact-value">{event.games.length}</div>
+          </div>
+        )}
       </div>
     </div>
   </section>
 
+  <!-- DIFFERENTIATORS -->
+  {event.differentiators && event.differentiators.length > 0 && (
+    <section class="section" style="background: #f8fafc;">
+      <div class="container">
+        <div class="differentiators">
+          <h3>What makes this event different</h3>
+          <ul>
+            {event.differentiators.map(d => (
+              <li>{d}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+  )}
+
   <!-- WHAT YOU GET -->
   <section class="section" style="background: #f8fafc;">
     <div class="container">
-      <h2 class="section-title">What You Get</h2>
+      <h2 class="section-title">What you get</h2>
       <div class="two-col">
         <div class="card">
           <h3>🎨 Premium Terrain</h3>
           <ul>
             <li>GW official table layouts</li>
-            <li>Painted and flocked terrain</li>
+            <li>Premium, painted terrain pieces</li>
             <li>Consistent, tournament-ready boards</li>
           </ul>
         </div>
         <div class="card">
           <h3>🏆 Competitive Prizing</h3>
           <ul>
-            <li>{event.prizing || '$5,000+ prize pool'}</li>
-            <li>Custom awards and trophies</li>
+            <li>{event.prizing || 'Custom awards and prizes'}</li>
             <li>Top finishers recognized</li>
+            <li>Multiple game system support</li>
           </ul>
         </div>
         <div class="card">
           <h3>⚖️ Expert Judges</h3>
           <ul>
-            <li>ITC-certified judge team</li>
+            <li>Experienced judge team</li>
             <li>Consistent, fair rulings</li>
             <li>Pre-event rules clarifications</li>
           </ul>
@@ -337,118 +359,164 @@ const { event } = Astro.props;
           <ul>
             <li>Players travel from across the Southwest</li>
             <li>Active Discord community</li>
-            <li>Post-event hangouts</li>
+            <li>Post-event socials</li>
           </ul>
         </div>
       </div>
-      
-      {event.charity && (
-        <div class="charity-block">
-          <p>❤️ {event.charity}</p>
-        </div>
-      )}
     </div>
   </section>
 
   <!-- SCHEDULE -->
-  <section class="section">
-    <div class="container">
-      <h2 class="section-title">Event Schedule</h2>
-      <div class="two-col">
-        {event.schedule?.map(day => (
-          <div class="card">
-            <div class="schedule-day">
-              <h4>{day.day}</h4>
-              {day.items.map(item => (
-                <div class="schedule-item">
-                  <span class="schedule-time">{item.time}</span>
-                  <span style="color: #475569;">{item.activity}</span>
-                </div>
-              ))}
+  {hasSchedule ? (
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Event Schedule</h2>
+        <div class="two-col">
+          {event.schedule.map(day => (
+            <div class="card">
+              <div class="schedule-day">
+                <h4>{day.day_label}</h4>
+                {day.items.map(item => (
+                  <div class="schedule-item">
+                    <span class="schedule-time">{item.time}</span>
+                    <span style="color: #475569;">{item.title}{item.note && ` — ${item.note}`}</span>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  ) : (
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Event Format</h2>
+        <div class="card">
+          <p style="color: #475569;">
+            <strong>Saturday:</strong> Registration, Rounds 1–3<br/>
+            <strong>Sunday:</strong> Rounds 4–5, Awards Ceremony<br/><br/>
+            Detailed schedule will be posted when venue is confirmed.
+          </p>
+        </div>
+      </div>
+    </section>
+  )}
 
   <!-- VENUE -->
   <section class="section" style="background: #f8fafc;">
     <div class="container">
-      <h2 class="section-title">Venue & Hotels</h2>
+      <h2 class="section-title">Venue</h2>
       <div class="two-col">
         <div>
-          <h3 style="font-size: 22px; margin-bottom: 15px;">{event.venue}</h3>
-          <p style="color: #475569; margin-bottom: 20px;">{event.venue_address}</p>
-          <p style="color: #64748b; font-size: 14px; line-height: 1.6;">
-            Free parking available on-site. Multiple hotel options within 10 minutes.
-            See the Player Packet for recommended hotels and group rates.
-          </p>
+          <h3 style="font-size: 22px; margin-bottom: 10px;">{event.venue?.name || 'Venue TBA'}</h3>
+          {venueFinal ? (
+            <>
+              <p style="color: #475569; margin-bottom: 20px;">{event.venue?.address}</p>
+              <p style="color: #64748b; font-size: 14px; line-height: 1.6;">
+                Free parking available. Hotel recommendations and directions will be in the Player Packet.
+              </p>
+              {event.venue?.maps_url && (
+                <a href={event.venue.maps_url} target="_blank" class="btn" style="margin-top: 15px;">View on Map</a>
+              )}
+            </>
+          ) : (
+            <p style="color: #64748b;">Venue details will be posted here when confirmed.</p>
+          )}
         </div>
-        <div class="venue-map-placeholder">
-          <span style="font-size: 18px; font-weight: 600;">📍 Map Embed</span>
-          <span style="font-size: 14px; margin-top: 10px;">Google Maps integration here</span>
-          <span style="font-size: 12px; color: #94a3b8; margin-top: 5px;">Shows venue location with nearby hotels</span>
+        <div class="card" style="display: flex; align-items: center; justify-content: center; min-height: 200px;">
+          {venueFinal ? (
+            <p style="color: #94a3b8;">[Map integration would appear here]</p>
+          ) : (
+            <p style="color: #94a3b8;">Map available once venue confirmed</p>
+          )}
         </div>
       </div>
     </div>
   </section>
 
-  <!-- DOWNLOADS -->
-  <section class="section">
-    <div class="container">
-      <h2 class="section-title">Downloads & Resources</h2>
-      <div class="card">
-        <table class="downloads-table">
-          <thead>
-            <tr>
-              <th>Document</th>
-              <th>Description</th>
-              <th>Link</th>
-            </tr>
-          </thead>
-          <tbody>
-            {event.downloads?.map(download => (
-              <tr>
-                <td>{download.name}</td>
-                <td style="color: #64748b;">{download.description || 'Official event document'}</td>
-                <td><a href={download.url} class="btn" style="padding: 8px 16px; font-size: 13px;">Download</a></td>
-              </tr>
-            ))}
-            {!event.downloads?.length && (
-              <tr>
-                <td colspan="3" style="text-align: center; color: #64748b;">Documents will be available soon</td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+  <!-- KEY DEADLINES -->
+  {hasDeadlines && (
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Key Deadlines</h2>
+        <div class="card">
+          {event.deadlines.map(d => (
+            <div style="display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #e2e8f0;">
+              <div>
+                <strong style="color: #0a0a1a;">{d.label}</strong>
+                <p style="color: #64748b; font-size: 14px; margin: 5px 0 0;">{d.note}</p>
+              </div>
+              <span style="color: #c9a45c; font-weight: 700; white-space: nowrap;">{d.date}</span>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  )}
+
+  <!-- DOCUMENTS -->
+  {readyDocuments.length > 0 && (
+    <section class="section" style="background: #f8fafc;">
+      <div class="container">
+        <h2 class="section-title">Downloads & Resources</h2>
+        <div class="card">
+          <table class="docs-table">
+            <thead>
+              <tr>
+                <th>Document</th>
+                <th>For</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {readyDocuments.map(doc => (
+                <tr>
+                  <td>{doc.title}</td>
+                  <td style="color: #64748b; font-size: 14px;">{doc.audience}</td>
+                  <td style="text-align: right;">
+                    <a href={doc.url} class="btn" style="padding: 8px 16px; font-size: 13px;">
+                      {doc.type === 'PDF' ? 'Download' : 'View'}
+                    </a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  )}
 
   <!-- FAQ -->
-  <section class="section" style="background: #f8fafc;">
-    <div class="container">
-      <h2 class="section-title">Frequently Asked Questions</h2>
-      <div class="card">
-        {event.faqs?.map(faq => (
-          <div class="faq-item">
-            <p class="faq-question">{faq.q}</p>
-            <p class="faq-answer">{faq.a}</p>
-          </div>
-        ))}
+  {event.faqs && event.faqs.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">FAQ</h2>
+        <div class="card">
+          {event.faqs.map((faq, i) => (
+            <div class="faq-item">
+              <p class="faq-q">{faq.q}</p>
+              <p class="faq-a">{faq.a}</p>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  )}
+
+  <!-- COMMUNITY -->
+  {event.community_note && (
+    <section class="section" style="background: #f8fafc;">
+      <div class="container">
+        <div class="community-block">
+          <h3>Community</h3>
+          <p>{event.community_note}</p>
+        </div>
+      </div>
+    </section>
+  )}
 
   <!-- SPONSORS -->
-  <SponsorStrip title="Event Sponsors" />
-
-  <!-- STICKY CTA -->
-  {event.ticket_url && (
-    <div class="sticky-cta">
-      <a href={event.ticket_url} class="btn btn-primary">Get Tickets — {event.ticket_price}</a>
-      <a href={`#`} class="btn btn-outline" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">Back to Top</a>
-    </div>
-  )}
+  <SponsorStrip title="Event Sponsors" sponsors={event.sponsors} />
 </Layout>

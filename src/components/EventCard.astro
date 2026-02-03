@@ -3,11 +3,12 @@ export interface Props {
   id: string;
   short_name: string;
   full_name: string;
-  date_display: string;
+  date_range_display: string;
   city: string;
   state: string;
   ticket_price?: string;
-  ticket_url?: string;
+  primary_cta?: { label: string; url: string };
+  secondary_ctas?: { label: string; url: string }[];
   is_flagship?: boolean;
   games?: string[];
   status?: string;
@@ -18,11 +19,12 @@ const {
   id, 
   short_name, 
   full_name, 
-  date_display, 
+  date_range_display, 
   city, 
   state, 
-  ticket_price = "TBA",
-  ticket_url,
+  ticket_price,
+  primary_cta,
+  secondary_ctas = [],
   is_flagship = false,
   games = [],
   status = "upcoming",
@@ -31,27 +33,27 @@ const {
 ---
 
 <div class={`event-card ${compact ? 'compact' : ''}`}>
-  {is_flagship && <span class="flagship-badge">Flagship Event</span>}
-  {status === 'past' && <span class="past-badge">Past Event</span>}
+  {is_flagship && <span class="flagship-badge">Flagship</span>}
+  {status === 'announced' && <span class="announced-badge">Announced</span>}
   
   <h3>{short_name}</h3>
   <p class="full-name">{full_name}</p>
-  <p class="date-location">📅 {date_display} • 📍 {city}, {state}</p>
+  <p class="date-location">📅 {date_range_display} • 📍 {city}, {state}</p>
   
   {games.length > 0 && (
     <p class="games">
-      {games.slice(0, 4).join(" • ")}
-      {games.length > 4 && " • more"}
+      {games.slice(0, 3).join(" • ")}
+      {games.length > 3 && " • more"}
     </p>
   )}
   
   <div class="card-footer">
-    <span class="price">{ticket_price}</span>
-    {ticket_url ? (
-      <a href={ticket_url} class="btn btn-primary">Get Tickets</a>
-    ) : (
-      <a href={`/events/${id}`} class="btn btn-outline">Learn More</a>
+    {primary_cta && (
+      <a href={primary_cta.url} class="btn btn-primary">{primary_cta.label}</a>
     )}
+    {secondary_ctas.slice(0, 2).map(cta => (
+      <a href={cta.url} class="btn btn-outline">{cta.label}</a>
+    ))}
   </div>
 </div>
 
@@ -64,6 +66,8 @@ const {
     box-shadow: 0 4px 15px rgba(125,211,252,0.2);
     transition: border-color 0.3s, transform 0.2s;
     position: relative;
+    display: flex;
+    flex-direction: column;
   }
   
   .event-card:hover {
@@ -88,7 +92,7 @@ const {
     text-transform: uppercase;
   }
   
-  .past-badge {
+  .announced-badge {
     position: absolute;
     top: -10px;
     right: 15px;
@@ -128,15 +132,11 @@ const {
   
   .card-footer {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
     margin-top: auto;
-  }
-  
-  .price {
-    font-size: 20px;
-    font-weight: 700;
-    color: #0a0a1a;
+    padding-top: 20px;
+    border-top: 1px solid #e2e8f0;
   }
   
   .btn {
@@ -147,6 +147,7 @@ const {
     font-weight: 700;
     font-size: 14px;
     transition: all 0.3s;
+    text-align: center;
   }
   
   .btn-primary {

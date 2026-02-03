@@ -52,7 +52,7 @@ const years = Object.keys(eventsByYear).sort((a, b) => b - a);
       background: #ffffff;
       border: 2px solid #e2e8f0;
       border-radius: 12px;
-      padding: 25px;
+      padding: 30px;
       transition: border-color 0.3s, transform 0.2s;
     }
     
@@ -123,6 +123,17 @@ const years = Object.keys(eventsByYear).sort((a, b) => b - a);
       font-size: 14px;
       margin-bottom: 15px;
     }
+    
+    .games-list {
+      color: #64748b;
+      font-size: 13px;
+      margin-bottom: 15px;
+    }
+    
+    .placeholder-text {
+      color: #94a3b8;
+      font-size: 14px;
+    }
   </style>
 
   <section class="hero">
@@ -141,26 +152,47 @@ const years = Object.keys(eventsByYear).sort((a, b) => b - a);
             {eventsByYear[year].map(event => (
               <div class="event-archive-card">
                 <h3>{event.full_name}</h3>
-                <p class="event-date">📅 {event.date_display} • 📍 {event.city}, {event.state}</p>
+                <p class="event-date">📅 {event.date_range_display} • 📍 {event.city}, {event.state}</p>
                 
                 {event.note && <p class="note">{event.note}</p>}
                 
-                {event.winners && event.winners.length > 0 && (
+                {event.games && (
+                  <p class="games-list">Games: {event.games.join(" • ")}</p>
+                )}
+                
+                {event.winners && (
                   <div class="winners-list">
-                    {event.winners.map(winner => (
+                    {event.winners.first && (
                       <div class="winner-item">
-                        <span class="winner-place">{winner.place}</span>
-                        <span class="winner-info">{winner.name} ({winner.army})</span>
+                        <span class="winner-place">🥇 1st</span>
+                        <span class="winner-info">{event.winners.first.name} — {event.winners.first.army}</span>
                       </div>
-                    ))}
+                    )}
+                    {event.winners.second && (
+                      <div class="winner-item">
+                        <span class="winner-place">🥈 2nd</span>
+                        <span class="winner-info">{event.winners.second.name} — {event.winners.second.army}</span>
+                      </div>
+                    )}
+                    {event.winners.third && (
+                      <div class="winner-item">
+                        <span class="winner-place">🥉 3rd</span>
+                        <span class="winner-info">{event.winners.third.name} — {event.winners.third.army}</span>
+                      </div>
+                    )}
                   </div>
                 )}
                 
                 <div class="card-links">
-                  {event.gallery_url && <a href={event.gallery_url}>📸 Gallery</a>}
-                  {event.results_url && <a href={event.results_url}>📊 Full Results</a>}
-                  {!event.gallery_url && !event.results_url && (
-                    <span style="color: #94a3b8; font-size: 14px;">Results coming soon</span>
+                  {event.gallery_url ? (
+                    <a href={event.gallery_url}>📸 Gallery</a>
+                  ) : (
+                    <span class="placeholder-text">📸 Gallery coming soon</span>
+                  )}
+                  {event.results_url ? (
+                    <a href={event.results_url}>📊 Results</a>
+                  ) : (
+                    <span class="placeholder-text" style="margin-left: 15px;">📊 Results coming soon</span>
                   )}
                 </div>
               </div>
