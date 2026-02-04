@@ -9,8 +9,11 @@ const {
   sponsors = [] 
 } = Astro.props;
 
-// Only show if we have 4+ real sponsors
-const hasEnoughSponsors = sponsors.length >= 4;
+// Map sponsor names to logo files
+const sponsorLogos: Record<string, string> = {
+  "Old World Games": "/images/sponsor-old-world-games.webp",
+  "Primetime Games": "/images/sponsor-primetime-games.avif"
+};
 ---
 
 {sponsors.length > 0 ? (
@@ -18,7 +21,11 @@ const hasEnoughSponsors = sponsors.length >= 4;
     <p class="sponsor-title">{title}</p>
     <div class="sponsor-logos">
       {sponsors.map((sponsor) => (
-        <div class="sponsor-name-badge">{sponsor}</div>
+        sponsorLogos[sponsor] ? (
+          <img src={sponsorLogos[sponsor]} alt={sponsor} class="sponsor-logo" />
+        ) : (
+          <div class="sponsor-name-badge">{sponsor}</div>
+        )
       ))}
     </div>
   </div>
@@ -51,6 +58,13 @@ const hasEnoughSponsors = sponsors.length >= 4;
     gap: 40px;
     flex-wrap: wrap;
     align-items: center;
+  }
+  
+  .sponsor-logo {
+    max-height: 80px;
+    width: auto;
+    max-width: 200px;
+    object-fit: contain;
   }
   
   .sponsor-name-badge {
