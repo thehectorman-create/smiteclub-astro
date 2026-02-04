@@ -83,7 +83,7 @@
       ],
       "prizing": "$5,000+ prize pool with custom awards",
       "community_note": "A portion of proceeds supports local schools and community partners",
-      "sponsors": []
+      "sponsors": ["Old World Games", "Primetime Games", "Broken Egg Games"]
     },
     {
       "id": "smite-club-open-2026",
@@ -133,7 +133,7 @@
       "documents": [],
       "prizing": "TBA",
       "community_note": "A portion of proceeds supports local schools and community partners",
-      "sponsors": []
+      "sponsors": ["Old World Games", "Primetime Games", "Broken Egg Games"]
     }
   ],
   "past_events": [

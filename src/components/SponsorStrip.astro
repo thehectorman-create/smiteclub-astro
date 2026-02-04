@@ -13,12 +13,12 @@ const {
 const hasEnoughSponsors = sponsors.length >= 4;
 ---
 
-{hasEnoughSponsors ? (
+{sponsors.length > 0 ? (
   <div class="sponsor-strip">
     <p class="sponsor-title">{title}</p>
     <div class="sponsor-logos">
-      {sponsors.map((sponsor, index) => (
-        <img src={sponsor} alt={`Sponsor ${index + 1}`} class="sponsor-logo" />
+      {sponsors.map((sponsor) => (
+        <div class="sponsor-name-badge">{sponsor}</div>
       ))}
     </div>
   </div>
@@ -53,10 +53,15 @@ const hasEnoughSponsors = sponsors.length >= 4;
     align-items: center;
   }
   
-  .sponsor-logo {
-    height: 60px;
-    width: auto;
-    object-fit: contain;
+  .sponsor-name-badge {
+    background: #ffffff;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 15px 25px;
+    font-weight: 700;
+    color: #0a0a1a;
+    font-size: 16px;
+    white-space: nowrap;
   }
   
   .sponsor-text-row {
